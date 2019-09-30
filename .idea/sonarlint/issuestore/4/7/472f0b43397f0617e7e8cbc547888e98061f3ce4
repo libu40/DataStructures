@@ -1,40 +1,0 @@
-
-[
-squid:S106 "9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8Ï—©È-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(èÑø°ûÿÿÿÿ8±ş„ÜÆ-
-[
-squid:S1064"9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8Âß±îÎ-
-esquid:S1126ã"AReplace this if-then-else statement by a single return statement.(ËÁÖıÿÿÿÿ8©Û’¬È-
-dsquid:S18545"ARemove this useless assignment to local variable "isPallindrome".(À¥ô»úÿÿÿÿ8Âß±îÎ-
-[
-squid:S106#"9Replace this use of System.out or System.err by a logger.(®¸Òúÿÿÿÿ8Ï—©È-
-Fsquid:S1659©""Declare "temp" on a separate line.(ÑÊÈÿÿÿÿÿ8ééó‹Ø-
-ƒsquid:S1192"`Define a constant instead of duplicating this literal "-------------------------------" 7 times.(ç‘ë®üÿÿÿÿ8Ï—©È-
-V
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ù½³¾8§òºäÆ-
-psquid:S1871y"MThis branch's code block is the same as the block for the branch on line 118.(ÌŒÌİüÿÿÿÿ8ä‚ãÆ-
-Usquid:S1172¨"1Remove this unused method parameter "lastNumber".(ø£«ûÿÿÿÿ8ñî‚ÙÆ-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(Æ°»ºüÿÿÿÿ8“Ì¸äÆ-
-[
-squid:S106*"9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8ÀÀØªÈ-
-[
-squid:S106,"9Replace this use of System.out or System.err by a logger.(ö¹äşÿÿÿÿ8»ëØªÈ-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8Ó³ÜÆ-
-[
-squid:S106."9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8Âß±îÎ-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8²’äàÆ-
-Usquid:S14815"2Remove this unused "isPallindrome" local variable.(À¥ô»úÿÿÿÿ8Âß±îÎ-
-_squid:S1126?"AReplace this if-then-else statement by a single return statement.(éÖ¡œ8Âß±îÎ-
-[
-squid:S1061"9Replace this use of System.out or System.err by a logger.(¬ĞË‹ùÿÿÿÿ8Âß±îÎ-
-Jsquid:S1481S",Remove this unused "isFound" local variable.(åÏÍ½8Œê²ãÆ-
-[
-squid:S106&"9Replace this use of System.out or System.err by a logger.(ç‘ë®üÿÿÿÿ8Ï—©È-
-[
-squid:S106("9Replace this use of System.out or System.err by a logger.(ÖœËôıÿÿÿÿ8Ï—©È-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(ìß´÷øÿÿÿÿ8ïŒÜÆ-
