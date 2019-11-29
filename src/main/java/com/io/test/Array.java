@@ -52,6 +52,10 @@ public class Array {
     System.out.println("-------------------------------");
     boolean isPallindrome = checkForPallindrome("madam");
 
+    System.out.println("---------------------------------");
+    int[] maxArray= {5, 6, 4, 3, 2};
+    int maxElement = maximumElement(maxArray, maxArray.length);
+    System.out.println(" the maximum element in the arrays is" +maxElement);
   }
 
   private static boolean checkForPallindrome(String compareData) {
@@ -248,5 +252,28 @@ public class Array {
       return performFibonacciRecursion(i - 1) + performFibonacciRecursion(i - 2);
     }
   }
+
+  private static int maximumElement(int[] array, int n) {
+    if(n<=3) {
+      return -1;
+    }
+
+    int maximumElement = array[0];
+    int maximumProduct = array[n-1] * array[1];
+
+    for(int i=1; i<n; i++) {
+      int currentProduct = array[i-1] *array[(i+1) % n];
+      if (currentProduct > maximumProduct) {
+        maximumProduct = currentProduct;
+        maximumElement = array[i];
+      } else if(currentProduct == maximumProduct) {
+        maximumElement = Math.max(maximumElement, array[i]);
+      }
+    }
+    return maximumElement;
+
+  }
+
+
 
 }
