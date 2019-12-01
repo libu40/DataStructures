@@ -68,14 +68,39 @@ It is ideal for less frequently accessed workloads with large, cold datasets.
 
 * AWS EC2 :
 1. web service that provides resizable compute capacity in the cloud. It is designed to make web-scale computing easier for developers.
-* It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment. Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, both up and down, as your computing requirements change. 
-* Until now, small developers did not have the capital to acquire massive compute resources and ensure they had the capacity they needed to handle unexpected spikes in load. Amazon EC2 enables any developer to leverage Amazon’s own benefits of massive scale with no up-front investment or performance compromises. Developers are now free to innovate knowing that no matter how successful their businesses become, 
+* It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment. 
+    Amazon EC2 reduces the time required to obtain and boot new server instances to minutes, allowing you to quickly scale capacity, 
+    both up and down, as your computing requirements change. 
+* Until now, small developers did not have the capital to acquire massive compute resources and 
+    ensure they had the capacity they needed to handle unexpected spikes in load. Amazon EC2 enables any developer to leverage Amazon’s own benefits of massive scale with no up-front investment or performance compromises. Developers are now free to innovate knowing that no matter how successful their businesses become, 
     it will be inexpensive and simple to ensure they have the compute capacity they need to meet their business requirements.
 * The “Elastic” nature of the service allows developers to instantly scale to meet spikes in traffic or demand. When computing requirements unexpectedly change (up or down), Amazon EC2 can instantly respond, meaning that developers have the ability to control how many resources are in use at any given point in time. 
     In contrast, traditional hosting services generally provide a fixed number of resources for a fixed amount of time, meaning that users have a limited ability to easily respond when their usage is rapidly changing, unpredictable, or is known to experience large peaks at various intervals.
 * RunInstances API call from EC2.DescribeInstances API call. TerminateInstances API call. StopInstances API call (but preserve the data on the boot partition) and StartInstances API
-* When you launch your Amazon EC2 instances you have the ability to store your root device data on Amazon EBS or the local instance store. By using Amazon EBS, data on the root device will persist independently from the lifetime of the instance. This enables you to stop and restart the instance at a subsequent time, 
+* When you launch your Amazon EC2 instances you have the ability to store your root device data on Amazon EBS or the local instance store. By using Amazon EBS, data on the root device will persist independently from the lifetime of the instance. 
+    This enablesAmazon CloudWatch stores metrics for terminated Amazon EC2 instances or deleted Elastic Load Balancers for 2 weeks. you to stop and restart the instance at a subsequent time, 
     which is similar to shutting down your laptop and restarting it when you need it again. Alternatively, the local instance store only persists during the life of the instance. This is an inexpensive way to launch instances where data is not stored to the root device. 
 * An Amazon Machine Image (AMI) is simply a packaged-up environment that includes all the necessary bits to set up and boot your instance. Your AMIs are your unit of deployment. 
-* retrieve metrics data for any Amazon EC2 instance up to 2 weeks from the time you started to monitor it
+* Retrieve metrics data for any Amazon EC2 instance up to 2 weeks from the time you started to monitor it
 * If you want to archive metrics beyond 2 weeks you can do so by calling mon-get-stats command from the command line and storing the results in Amazon S3 or Amazon SimpleDB.
+* Amazon CloudWatch stores metrics for terminated Amazon EC2 instances or deleted Elastic Load Balancers for 2 weeks.
+* EC2 is a fully managed service designed to launch or terminate Amazon EC2 instances automatically to help ensure you have the correct number of Amazon EC2 instances available to handle the load for your application. 
+    EC2 Auto Scaling helps you maintain application availability through fleet management for EC2 instances, which detects and replaces unhealthy instances, and by scaling your Amazon EC2 capacity up or down automatically according to conditions you define. 
+    You can use EC2 Auto Scaling to automatically increase the number of Amazon EC2 instances during demand spikes to maintain performance and decrease capacity during lulls to reduce costs.
+* You can hibernate an instance to get your instance and applications up and running quickly. In the case of hibernate, your instance gets hibernated and the RAM data persisted.
+  In the case of Stop, your instance gets shutdown and RAM is cleared.
+* You can resume by calling the StartInstances API as you would for a regular stopped instance. 
+   You can also do this through the console by selecting your instance, then clicking Actions > Instance State > Start.
+* RAM data is always encrypted when it is moved to the EBS root volume. Encryption on the EBS root volume is enforced at instance launch time. 
+    This is to ensure protection for any sensitive content that is in memory at the time of hibernation.
+* On-Demand Capacity Reservation is an EC2 offering that lets you create and manage reserved capacity on Amazon EC2. You can create a Capacity Reservation by choosing an Availability Zone and quantity (number of instances) along with other instance specifications such as instance type and tenancy. 
+    Once created, the EC2 capacity is held for you regardless of whether you run the instances or not.
+* A Reserved Instance (RI) is an EC2 offering that provides you with a significant discount on EC2 usage when you commit to a one-year or three-year term.
+* Spot Instances are spare EC2 capacity that can save you up 90% off of On-Demand prices that AWS can interrupt with a 2-minute notification. Spot uses the same underlying EC2 instances as On-Demand and Reserved Instances, and is best suited for fault-tolerant, flexible workloads. 
+    Spot Instances provides an additional option for obtaining compute capacity and can be used along with On-Demand and Reserved Instances.
+* We highly recommend using multiple Spot capacity pools to maximize the amount of Spot capacity available to you. 
+    EC2 provides built-in automation to find the most cost-effective capacity across multiple Spot capacity pools using EC2 Auto Scaling.
+    
+AWS IAM:
+*
+
