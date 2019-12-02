@@ -102,5 +102,28 @@ It is ideal for less frequently accessed workloads with large, cold datasets.
     EC2 provides built-in automation to find the most cost-effective capacity across multiple Spot capacity pools using EC2 Auto Scaling.
     
 AWS IAM:
-*
+* To start using IAM, you must subscribe to at least one of the AWS services that is integrated with IAM. 
+    You then can create and manage users, groups, and permissions via IAM APIs, the AWS CLI, or the IAM console.
+* Create and manage IAM users, Create and manage IAM groups, Manage users' security credentials, Create and manage policies to grant access to AWS services and resources.   
+* An IAM role is an IAM entity that defines a set of permissions for making AWS service requests. IAM roles are not associated with a specific user or group. 
+    Instead, trusted entities assume roles, such as IAM users, applications, or AWS services such as EC2.
+* IAM roles allow you to delegate access with defined permissions to trusted entities without having to share long-term access keys. 
+    You can use IAM roles to delegate access to IAM users managed within your account, to IAM users under a different AWS account, or to an AWS service such as EC2.    
+* You assume an IAM role by calling the AWS Security Token Service (STS) AssumeRole APIs (in other words, AssumeRole, AssumeRoleWithWebIdentity, and AssumeRoleWithSAML). 
+    These APIs return a set of temporary security credentials that applications can then use to sign requests to AWS service APIs.    
+* An IAM user has permanent long-term credentials and is used to directly interact with AWS services. An IAM role does not have any credentials and cannot make direct requests to AWS services. 
+    IAM roles are meant to be assumed by authorized entities, such as IAM users, applications, or an AWS service such as EC2.   
+* An IAM role is an AWS Identity and Access Management (IAM) entity with permissions to make AWS service requests. IAM roles cannot make direct requests to AWS services; they are meant to be assumed by authorized entities, such as IAM users, applications, or AWS services such as EC2. 
+    Use IAM roles to delegate access within or between AWS accounts.    
+* No. You can only associate one IAM role with an EC2 instance at this time. This limit of one role per instance cannot be increased.
+* Access control policies are attached to users, groups, and roles to assign permissions to AWS resources. By default, IAM users, groups, and roles have no permissions; users with sufficient permissions must use a policy to grant the desired permissions.
+* To set permissions, you can create and attach policies using the AWS Management Console, the IAM API, or the AWS CLI. Users who have been granted the necessary permissions can create policies and assign them to IAM users, groups, and roles.
+* Managed policies are IAM resources that express permissions using the IAM policy language. You can create, edit, and manage separately from the IAM users, groups, and roles to which they are attached. After you attach a managed policy to multiple IAM users, groups, or roles, you can update that policy in one place and the permissions automatically extend to all attached entities. 
+    Managed policies are managed either by you (these are called customer managed policies) or by AWS (these are called AWS managed policies).
+* You can use the visual editor or the JSON editor in the IAM console. The visual editor is a point-and-click editor that guides you through the process of granting permissions in a policy without requiring you to write the policy in JSON. 
+    You can create policies in JSON by using the CLI and SDK.    
+* AWS provides a set of commonly used permissions that you can attach to IAM users, groups, and roles in your account. These are called AWS managed policies.
+* Using IAM roles, IAM users and federated users can access resources in another AWS account via the AWS Management Console, the AWS CLI, or the APIs.  
+* The IAM policy simulator is a tool to help you understand, test, and validate the effects of your access control policies.      
+ 
 
