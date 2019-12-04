@@ -124,6 +124,133 @@ AWS IAM:
     You can create policies in JSON by using the CLI and SDK.    
 * AWS provides a set of commonly used permissions that you can attach to IAM users, groups, and roles in your account. These are called AWS managed policies.
 * Using IAM roles, IAM users and federated users can access resources in another AWS account via the AWS Management Console, the AWS CLI, or the APIs.  
-* The IAM policy simulator is a tool to help you understand, test, and validate the effects of your access control policies.      
+* The IAM policy simulator is a tool to help you understand, test, and validate the effects of your access control policies. 
+* Temporary security credentials consist of the AWS access key ID, secret access key, and security token. Temporary security credentials are valid for a specified duration and for a specific set of permissions. 
+* You can call the GetFederationToken, AssumeRole, AssumeRoleWithSAML, or AssumeRoleWithWebIdentity STS APIs to request temporary security credentials.
+* IAM users can request temporary security credentials for their own use by calling the AWS STS GetSessionToken API. 
+    The default expiration for these temporary credentials is 12 hours; the minimum is 15 minutes, and the maximum is 36 hours.
+    You can also use temporary credentials with Multi-Factor Authentication (MFA)-Protected API Access.
+* If you're making direct HTTPS API requests to AWS, you can sign those requests with the temporary security credentials that you get from AWS Security Token Service (AWS STS). To do this, do the following:
+    Use the access key ID and secret access key that are provided with the temporary security credentials the same way you would use long-term credentials to sign a request
+    Use the session token that is provided with the temporary security credentials. Include the session token in the "x-amz-security-token" header. See the following example request.
+        For Amazon S3, via the "x-amz- security-token" HTTP header.
+        For other AWS services, via the SecurityToken parameter.    
+
+AWS EBS:
+*   AWS Elastic Beanstalk makes it even easier for developers to quickly deploy and manage applications in the AWS Cloud. Developers simply upload their application, 
+    and Elastic Beanstalk automatically handles the deployment details of capacity provisioning, load balancing, auto-scaling, and application health monitoring.
+*   Those who want to deploy and manage their applications within minutes in the AWS Cloud. 
+*   AWS Elastic Beanstalk automates the details of capacity provisioning, load balancing, auto scaling, and application deployment, creating an environment that runs a version of your application. 
+    You can simply upload your deployable code (e.g., WAR file), and AWS Elastic Beanstalk does the rest.       
+*   Once your application is running, Elastic Beanstalk automates management tasks–such as monitoring, application version deployment, a basic health check–and facilitates log file access. 
+    By using Elastic Beanstalk, developers can focus on developing their application and are freed from deployment-oriented tasks, such as provisioning servers, setting up load balancing, or managing scaling.   
+*   Most existing application containers or platform-as-a-service solutions, while reducing the amount of programming required, significantly diminish developers’ flexibility and control. 
+    Developers are forced to live with all the decisions predetermined by the vendor–with little to no opportunity to take back control over various parts of their application’s infrastructure. 
+    However, with AWS Elastic Beanstalk, developers retain full control over the AWS resources powering their application. If developers decide they want to manage some (or all) of the elements of their infrastructure, they can do so seamlessly by using Elastic Beanstalk’s management capabilities.      
+*   WS Elastic Beanstalk stores your application files and, optionally, server log files in Amazon S3. If you are using the AWS Management Console, the AWS Toolkit for Visual Studio, or AWS Toolkit for Eclipse, an Amazon S3 bucket will be created in your account for you and the files you upload will be automatically copied from your local client to Amazon S3. 
+    Optionally, you may configure Elastic Beanstalk to copy your server log files every hour to Amazon S3. You do this by editing the environment configuration settings.
+*   Elastic Beanstalk can automatically provision an Amazon RDS DB instance. The information about connectivity to the DB instance is exposed to your application by environment variables. 
+    To learn more about how to configure RDS DB instances for your environment.
+
+AWS Fargate:
+
+*   AWS Fargate is a compute engine for deploying and managing containers, which frees you from having to manage any of the underlying infrastructure. 
+    With AWS Fargate, you no longer have to provision, configure, and scale clusters of virtual machines to run containers.    
+*   AWS Fargate supports all of the common container use cases, for example microservices architecture applications, batch processing, machine learning applications, 
+    and migrating on premise applications to the cloud.    
+
+AWS Lambda :
+
+*   AWS Lambda lets you run code without provisioning or managing servers. You pay only for the compute time you consume - there is no charge when your code is not running. 
+    With Lambda, you can run code for virtually any type of application or backend service - all with zero administration. 
+   Just upload your code and Lambda takes care of everything required to run and scale your code with high availability. 
+   You can set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app. 
+*   Serverless computing allows you to build and run applications and services without thinking about servers. With serverless computing, 
+    your application still runs on servers, but all the server management is done by AWS. At the core of serverless computing is AWS Lambda, which lets you run your code without provisioning or managing servers.   
+*    With Amazon EC2 you are responsible for provisioning capacity, monitoring fleet health and performance, and designing for fault tolerance and scalability whereas
+    AWS Lambda makes it easy to execute code in response to events, such as changes to Amazon S3 buckets, updates to an Amazon DynamoDB table, or custom events generated by your applications or devices. 
+    With Lambda you do not have to provision your own instances; Lambda performs all the operational and administrative activities on your behalf, including capacity provisioning, monitoring fleet health, 
+    applying security patches to the underlying compute resources, deploying your code, running a web service front end, and monitoring and logging your code. AWS Lambda provides easy scaling and high availability to your code without additional effort on your part.
+*   AWS Lambda offers an easy way to accomplish many activities in the cloud. For example, you can use AWS Lambda to build mobile back-ends that retrieve and transform data from Amazon DynamoDB, 
+    handlers that compress or transform objects as they are uploaded to Amazon S3, auditing and reporting of API call.
+*   AWS Lambda stores code in Amazon S3 and encrypts it at rest. AWS Lambda performs additional integrity checks while your code is in use.
+*   The code you run on AWS Lambda is uploaded as a “Lambda function”. Each function has associated configuration information, such as its name, description, entry point, and resource requirements. 
+*   The code must be written in a “stateless” style i.e. it should assume there is no affinity to the underlying compute infrastructure. 
+*   Each Lambda function receives 500MB of non-persistent disk space in its own /tmp directory.
+*   Keeping functions stateless enables AWS Lambda to rapidly launch as many copies of the function as needed to scale to the rate of incoming events. While AWS Lambda’s programming model is stateless, 
+    your code can access stateful data by calling other web services, such as Amazon S3 or Amazon DynamoDB.
+*    Inbound network connections are blocked by AWS Lambda, and for outbound connections only TCP/IP and UDP/IP sockets are supported.
+*   Creation:
+    If you are using Node.js or Python, you can author the code for your function using code editor in the AWS Lambda console which lets you author and test your functions, 
+    and view the results of function executions in a robust, IDE-like environment.
+    You can also package the code (and any dependent libraries) as a ZIP and upload it using the AWS Lambda console from your local environment 
+    or specify an Amazon S3 location where the ZIP file is located. Uploads must be no larger than 50MB (compressed).
+*   You can package the code (and any dependent libraries) as a ZIP and upload it using the AWS CLI from your local environment, 
+    or specify an Amazon S3 location where the ZIP file is located. Uploads must be no larger than 50MB (compressed).   
+*   For sensitive information, such as database passwords, we recommend you use client-side encryption using AWS Key Management Service and store the resulting values as ciphertext in your environment variable. 
+    You will need to include logic in your AWS Lambda function code to decrypt these values.     
+*   AWS Lambda automatically monitors Lambda functions on your behalf, reporting real-time metrics through Amazon CloudWatch, including total requests, account-level and function-level concurrency usage, latency, error rates, 
+    and throttled requests. You can view statistics for each of your Lambda functions via the Amazon CloudWatch console or through the AWS Lambda console. You can also call third-party monitoring APIs in your Lambda function.
+*   You do not have to scale your Lambda functions – AWS Lambda scales them automatically on your behalf. Every time an event notification is received for your function, AWS Lambda quickly locates free capacity within its compute fleet and runs your code. 
+    Since your code is stateless, AWS Lambda can start as many copies of your function as needed without lengthy deployment and configuration delays. There are no fundamental limits to scaling a function. AWS Lambda will dynamically allocate capacity to match the rate of incoming events.
+*   AWS Lambda functions can be configured to run up to 15 minutes per execution. You can set the timeout to any value between 1 second and 15 minutes.
+*   An event source is an AWS service or developer-created application that produces events that trigger an AWS Lambda function to run. 
+    Some services publish these events to Lambda by invoking the cloud function directly (for example, Amazon S3). Lambda can also poll resources in other services that do not publish events to Lambda. 
+    For example, Lambda can pull records from an Amazon Kinesis stream or an Amazon SQS queue and execute a Lambda function for each fetched message.       
+*   From the AWS Lambda console, you can select a function and associate it with notifications from an Amazon S3 bucket. Alternatively, 
+    you can use the Amazon S3 console and configure the bucket’s notifications to send to your AWS Lambda function. This same functionality is also available through the AWS SDK and CLI.     
+*   You can trigger a Lambda function on DynamoDB table updates by subscribing your Lambda function to the DynamoDB Stream associated with the table. 
+    You can associate a DynamoDB Stream with a Lambda function using the Amazon DynamoDB console, the AWS Lambda console or Lambda’s registerEventSource API.   
+ *  The Amazon Kinesis and DynamoDB Streams records sent to your AWS Lambda function are strictly serialized, per shard. 
+    This means that if you put two records in the same shard, Lambda guarantees that your Lambda function will be successfully invoked with the first record before it is invoked with the second record. 
+    If the invocation for one record times out, is throttled, or encounters any other error, Lambda will retry until it succeeds (or the record reaches its 24-hour expiration) before moving on to the next record. 
+    The ordering of records across different shards is not guaranteed, and processing of each shard happens in parallel.
+*   From the AWS Lambda console, you can select a Lambda function and associate it with an Amazon SNS topic. 
+*   From the Amazon SES Console, you can set up your receipt rule to have Amazon SES deliver your messages to an AWS Lambda function. 
+*   First, configure the alarm to send Amazon SNS notifications. Then from the AWS Lambda console, select a Lambda function and associate it with that Amazon SNS topic.
+*   AWS Lambda is designed to process events within milliseconds. Latency will be higher immediately after a Lambda function is created, updated, or if it has not been used recently.
+*   You upload the code you want AWS Lambda to execute and then invoke it from your mobile app using the AWS Lambda SDK included in the AWS Mobile SDK. You can make both direct (synchronous) calls to retrieve 
+    or check data in real time as well as asynchronous calls. You can also define a custom API using Amazon API Gateway and invoke your Lambda functions through any REST compatible client. 
+*   You can invoke a Lambda function over HTTPS by defining a custom RESTful API using Amazon API Gateway. This gives you an endpoint for your function which can respond to REST calls like GET, PUT and POST.
+*   Lambda-based applications (also referred to as serverless applications) are composed of functions triggered by events. A typical serverless application consists of one or more functions triggered by events 
+    such as object uploads to Amazon S3, Amazon SNS notifications, or API actions. These functions can stand alone or leverage other resources such as DynamoDB tables or Amazon S3 buckets. 
+    The most basic serverless application is simply a function.    
+*   You can deploy and manage your serverless applications using the AWS Serverless Application Model (AWS SAM). AWS SAM is a specification that prescribes the rules for expressing serverless applications on AWS. 
+    This specification aligns with the syntax used by AWS CloudFormation today and is supported natively within AWS CloudFormation as a set of resource types (referred to as "serverless resources"). 
+    These resources make it easier for AWS customers to use CloudFormation to configure and deploy serverless applications, using existing CloudFormation APIs.    
+*   You can automate your serverless application’s release process using AWS CodePipeline and AWS CodeDeploy. CodePipeline is a continuous delivery service that enables you to model, visualize 
+    and automate the steps required to release your serverless application. CodeDeploy provides a deployment automation engine for your Lambda-based applications. CodeDeploy lets you orchestrate 
+    deployments according to established best-practice methodologies such as canary and linear deployments,    
+*   To get started, visit the AWS Lambda console and download one of our blueprints. The file you download will contain an AWS SAM file (which defines the AWS resources in your application), 
+    and a .ZIP file (which includes your function’s code). You can then use AWS CloudFormation commands to package and deploy the serverless application that you just downloaded.  
+*   You can use AWS Step Functions to coordinate a series of AWS Lambda functions in a specific order. You can invoke multiple Lambda functions sequentially, passing the output of one to the other, 
+    and/or in parallel, and Step Functions will maintain state during executions for you.      
+*   You can enable your Lambda function for tracing with AWS X-Ray by adding X-Ray permissions to your Lambda function’s execution role and changing your function’s “tracing mode” to “active. 
+    ” When X-Ray is enabled for your Lambda function, AWS Lambda will emit tracing information to X-Ray regarding the Lambda service overhead incurred when invoking your function. 
+    This will provide you with insights such as Lambda service overhead, function init time, and function execution time. In addition, you can include the X-Ray SDK in your Lambda deployment package to create your own trace segments, annotate your traces, 
+    or view trace segments for downstream calls made from your Lambda function. X-Ray SDKs are currently available for Node.js and Java.
+*   Lambda@Edge allows you to run code across AWS locations globally without provisioning or managing servers, responding to end users at the lowest network latency. You just 
+    upload your Node.js code to AWS Lambda and configure your function to be triggered in response to Amazon CloudFront request  The code is then ready to execute across AWS locations globally when a request for content is received, 
+    and scales with the volume of CloudFront requests globally.        
+*   To use Lambda@Edge, you just upload your code to AWS Lambda and associate a function version to be triggered in response to Amazon CloudFront requests. Your code must satisfy the Lambda@Edge service limits. Lambda@Edge only supports 
+    Node.js for global invocation by CloudFront events at this time. 
+*   Lambda@Edge is optimized for latency sensitive use cases where your end viewers are distributed globally. All the information you need to make a decision should be available at the CloudFront edge, within the function and the request. 
+    This means that use cases where you are looking to make decisions on how to serve content based on user characteristics can now be executed and served close to your users without having to be routed back to a centralized server.
+*   The difference is that API Gateway and Lambda are regional services. Using Lambda@Edge and Amazon CloudFront allows you to execute logic across multiple AWS locations based on where your end viewers are located.           
+*   AWS Lambda is designed to use replication and redundancy to provide high availability for both the service itself and for the Lambda functions it operates. There are no maintenance windows or scheduled downtimes for either.
+*   You grant permissions to your Lambda function to access other resources using an IAM role. AWS Lambda assumes the role while executing your Lambda function, so you always retain full, secure control of exactly which AWS resources it can use. 
+*   No. Lambda functions provide access only to a single VPC. If multiple subnets are specified, they must all be in the same VPC.
+*   Lambda functions configured to access resources in a particular VPC will not have access to the internet as a default configuration. If you need access to external endpoints, you will need to create a NAT in your VPC to forward this traffic 
+    and configure your security group to allow this outbound traffic.
+
+AWS SAM :
+*   Serverless applications eliminate the need to provision, deploy, or manage servers or other infrastructure. They come with built-in high availability and they scale continuously and automatically. 
+    You can use one of the many fully managed AWS services to build and run serverless applications, including AWS Lambda for compute, Amazon API Gateway for APIs, and Amazon DynamoDB for databases.
+*   Serverless applications are deployed as AWS CloudFormation stacks, which make it easy for you to manage an application as a single unit. Each resource is tagged with the application’s uniquely identifiable Amazon Resource Name (ARN), 
+    which helps you locate the resources using the AWS Tag Editor console. You can also use existing AWS and third-party tools to manage each resource separately.        
+    
+AWS ELB:
+
+  
  
 
