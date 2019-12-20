@@ -250,7 +250,111 @@ AWS SAM :
     which helps you locate the resources using the AWS Tag Editor console. You can also use existing AWS and third-party tools to manage each resource separately.        
     
 AWS ELB:
+* Elastic Load Balancing supports three types of load balancers. You can select the appropriate load balancer based on your application needs. 
+  If you need to load balance HTTP requests, we recommend you to use Application Load Balancer. For network/transport protocols (layer4 – TCP, UDP) load balancing, 
+  and for extreme performance/low latency applications we recommend using Network Load Balancer. If your application is built within the EC2 Classic network then you should use Classic Load Balancer.
+* Elastic Load Balancing supports three types of load balancers. You can select the appropriate load balancer based on your application needs. 
+    If you need to load balance HTTP requests, we recommend you to use Application Load Balancer. For network/transport protocols (layer4 – TCP, UDP) load balancing, 
+    and for extreme performance/low latency applications we recommend using Network Load Balancer. If your application is built within the EC2 Classic network then you should use Classic Load Balancer.
+*  Yes. To receive a history of Application Load Balancing API calls made on your account, use AWS CloudTrail.
+*  Yes, you can terminate HTTPS connection on the Application Load Balancer. You must install an SSL certificate on your load balancer. The load balancer uses this certificate to terminate the connection 
+    and then decrypt requests from clients before sending them to targets.
+*  You can either use AWS Certificate Manager to provision an SSL/TLS certificate or you can obtain the certificate from other sources by creating the certificate request, 
+    getting the certificate request signed by a CA, and then uploading the certificate either using AWS Certification Manager or the AWS Identity and Access Management (IAM) service. 
+*   You can integrate your Application Load Balancer with AWS WAF, a web application firewall that helps protect web applications from attacks by allowing you to configure rules 
+    based on IP addresses, HTTP headers, and custom URI strings. Using these rules, AWS WAF can block, allow, or monitor (count) web requests for your web application.     
+*    Cross-zone load balancing is already enabled by default in Application Load Balancer.
+*   HTTP(S) requests received by a load balancer are processed by the content-based routing rules. 
+    If the request content matches the rule with an action to forward it to a target group with a Lambda function as a target then the corresponding Lambda function is invoked. 
+    The content of the request (including headers and body) is passed on to the Lambda function in JSON format. The response from the Lambda function should be in JSON format. 
+    The response from the Lambda function is transformed into an HTTP response and sent to the client. The load balancer invokes your Lambda function using the AWS Lambda Invoke API 
+    and requires that you have provided invoke permissions for your Lambda function to Elastic Load Balancing service.       
+*   Yes. Network Load Balancers support both TCP, UDP, and TCP+UDP (Layer 4) listeners, as well as TLS listeners.
+*   The Classic Load Balancer supports Amazon EC2 instances with any operating system currently supported by the Amazon EC2 service.
 
-  
+AWS Security Best Practices :
+
+*   Using the IAM Service:
+    *   The IAM service is one component of the AWS secure global infrastructure that
+        we discuss in this paper. With IAM, you can centrally manage users, security
+        credentials such as passwords, access keys, and permissions policies that control
+        which AWS services and resources users can access.
+    *   As a best practice, we recommend that you
+        create an IAM user even for yourself and that you do not use your AWS account
+        credentials for everyday access to AWS.
+*   Regions, Availability Zones, and Endpoints:
+*   Sharing Security Responsibility for AWS Services:
+    *Infrastructure Services: This category includes compute services, such
+                              as Amazon EC2, and related services, such as Amazon Elastic Block Store
+                              (Amazon EBS), Auto Scaling, and Amazon Virtual Private Cloud (Amazon
+                              VPC). With these services, you can architect and build a cloud
+                              infrastructure using technologies similar to and largely compatible with
+                              on-premises solutions. You control the operating system, and you
+                              configure and operate any identity management system that provides
+                              access to the user layer of the virtualization stack.
+    *Container Services: You are responsible
+                        for setting up and managing network controls, such as firewall rules, and
+                        for managing platform-level identity and access management separately
+                        from IAM. Examples of container services include Amazon Relational
+                        Database Services (Amazon RDS), Amazon Elastic Map Reduce (Amazon
+                        EMR) and AWS Elastic Beanstalk.
+    *Abstracted Services: This category includes high-level storage,
+                         database, and messaging services, such as Amazon Simple Storage Service
+                         (Amazon S3), Amazon Glacier, Amazon DynamoDB, Amazon Simple
+                         Queuing Service (Amazon SQS), and Amazon Simple Email Service
+                         (Amazon SES).
+*   For Amazon EC2 Windows instances using the ec2config service, when a new
+    instance from a standard AWS AMI is launched, the ec2config service sets a
+    new random Administrator password for the instance and encrypts it using the
+    corresponding Amazon EC2 key pair’s public key. The user can get the Windows
+    instance password by using the AWS Management Console or command line
+    tools, and by providing the corresponding Amazon EC2 private key to decrypt
+    the password. This password, along with the default Administrative account for
+    the Amazon EC2 instance, can be used to authenticate to the Windows instance.
+    
+*   Using the Trusted Advisor Tool:
+    * Some AWS Premium Support plans include access to the Trusted Advisor tool,
+      which offers a one-view snapshot of your service and helps identify common
+      security misconfigurations, suggestions for improving system performance, and
+      underutilized resources.
+* Manage AWS Accounts, IAM Users,Groups, and Roles:
+    *  you should identify or create a new AWS group for that access, and
+      provision user access via group membership, as well as permissions and policies
+      assigned at the group level.
+    * As a best practice, users should rotate their access keys on a regular
+      basis. 
+    * Applications that run on an Amazon EC2 instance and that need
+      access to AWS resources such as Amazon S3 buckets or an
+      Amazon DynamoDB table must have security credentials in order
+      to make programmatic requests to AWS. Developers might
+      distribute their credentials to each instance and applications can
+      then use those credentials to access resources, but distributing
+      long-term credentials to each instance is challenging to manage
+      and a potential security risk.
+    * To manage access to resources, you might have multiple AWS
+      accounts—for example, to isolate a development environment from
+      a production environment. However, users from one account might
+      need to access resources in the other account, such as promoting
+      an update from the development environment to the production
+      environment. Although users who work in both accounts could
+      have a separate identity in each account, managing credentials for
+      multiple accounts makes identity management difficult.(cross account access).
+    * Users might already have identities outside of AWS, such as in your
+        corporate directory. However, those users might need to work with
+        AWS resources (or work with applications that access those
+        resources). If so, these users also need AWS security credentials
+        in order to make requests toAWS.   
+* IAM roles and temporary security credentials address these use cases. An IAM
+  role lets you define a set of permissions to access the resources that a user or
+  service needs, but the permissions are not attached to a specific IAM user or
+  group. Instead, IAM users, mobile and EC2-based applications, or AWS services
+  (like Amazon EC2) can programmatically assume a role. Assuming the role
+  returns temporary security credentials that the user or application can use to
+  make for programmatic requests to AWS. These temporary security credentials
+  have a configurable expiration and are automatically rotated. Using IAM roles
+  and temporary security credentials means you don't always have to manage longterm credentials 
+  and IAM users for each entity that requires access to a resource  
+* Managing OS-level Access to Amazon EC2 Instances :
+    *                                                                                
  
 
