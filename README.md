@@ -355,6 +355,164 @@ AWS Security Best Practices :
   and temporary security credentials means you don't always have to manage longterm credentials 
   and IAM users for each entity that requires access to a resource  
 * Managing OS-level Access to Amazon EC2 Instances :
-    *                                                                                
- 
+    * Encryption–server side
+      Amazon S3 supports server-side encryption of user data. Server-side
+      encryption is transparent to the end user. AWS generates a unique
+      encryption key for each object, and then encrypts the object using AES-256.
+      The encryption key is then encrypted itself using AES-256-with a master key
+      that is stored in a secure location. The master key is rotated on a regular
+      basis.     
+    * Encryption–client side :
+      With client-side encryption you create and manage your own encryption
+      keys. Keys you create are not exported to AWS in clear text. Your
+      applications encrypt data before submitting it to Amazon S3, and decrypt
+      data after receiving it from Amazon S3. Data is stored in an encrypted form,
+      with keys and algorithms only known to you. While you can use any
+      encryption algorithm, and either symmetric or asymmetric keys to encrypt
+      the data, the AWS-provided Java SDK offers Amazon S3 client-side
+      encryption features. See References and Further Reading for more
+      information.                                                                           
+ Blue/Green Deployments on AWS :
+* Blue/green deployment is a technique for releasing applications by shifting traffic
+  between two identical environments running different versions of the application.
+  Blue/green deployments can mitigate common risks associated with deploying
+  software, such as downtime and rollback capability. 
+* In a traditional approach to application deployment, you typically fix a failed
+  deployment by redeploying an older, stable version of the application.
+  Redeployment in traditional data centers is typically done on the same set of
+  resources due to the cost and effort of provisioning additional resources.
+  Although this approach works, it has many shortcomings. Rollback isn’t easy
+  because it’s implemented by redeployment of an older version from scratch. This
+  process takes time, making the application potentially unavailable for long
+  periods. Even in situations where the application is only impaired, a rollback is
+  required, which overwrites the faulty version. As a result, you have no
+  opportunity to debug the faulty application in place.
+  Applying the principles of agility, scalability, utility consumption, and
+  automation capabilities of the AWS platform can shift the paradigm of
+  application deployment. This enables a better deployment technique called
+  blue/green deployment.
+* Blue/green deployments provide near zero-downtime release and rollback
+  capabilities. The fundamental idea behind blue/green deployment is to shift
+  traffic between two identical environments that are running different versions of
+  your application. The blue environment represents the current application
+  version serving production traffic. In parallel, the green environment is staged
+  running a different version of your application. After the green environment is
+  ready and tested, production traffic is redirected from blue to green. 
+  If any problems are identified, you can roll back by reverting traffic back to the blue
+  environment.
+Benefits of Blue/Green :
+* Blue/green deployments provide a level of
+  isolation between your blue and green application environments. It ensures
+  spinning up a parallel green environment does not affect resources underpinning
+  your blue environment. This isolation reduces your deployment risk.
+* After you deploy the green environment, you have the opportunity to validate it.
+  You might do that with test traffic before sending production traffic to the green
+  environment, or by using a very small fraction of production traffic, to better
+  reflect real user traffic. This is called canary analysis or canary testing. If you
+  discover the green environment is not operating as expected, there is no impact
+  on the blue environment. You can route traffic back to it, minimizing impaired
+  operation or downtime, and limiting the blast radius of impact.
+Techniques:
+* Update DNS Routing with Amazon Route 53
+* Swap the Auto Scaling Group Behind Elastic Load Balancer.
+* Update Auto Scaling Group Launch Configurations.
+* Swap the Environment of an Elastic Beanstalk Application.
+* Clone a Stack in AWS OpsWorks and Update DNS
+When Blue/Green Deployments Are Not Recommended :
+* Are your schema changes too complex to decouple from the code changes? Is sharing of data stores not feasible? 
+* Does your application need to be “deployment aware”?
+
+Implementing Microservices on AWS:
+* Microservices architectures are not a completely new approach to software
+  engineering, but rather a combination of various successful and proven
+  concepts such as:
+  • Agile software development
+  • Service-oriented architectures
+  • API-first design
+  • Continuous Integration/Continuous Delivery (CI/CD)
+* Typical monolithic applications are built using different layers—a user
+ interface (UI) layer, a business layer, and a persistence layer. A central idea
+ of a microservices architecture is to split functionalities into cohesive
+ “verticals”—not by technological layers, but by implementing a specific domain.   
+* AWS has integrated building blocks that support the development of
+  microservices. Two popular approaches are using AWS Lambda5 and
+  Docker containers with AWS Fargate6
+* Docker images used in Amazon ECS and Amazon EKS can be stored in
+  Amazon Elastic Container Registry (Amazon ECR.)
+  eliminates the need to operate and scale the infrastructure required to power
+  your container registry.  
+* AWS Private Link is a highly available, scalable technology that enables
+    you to privately connect your VPC to supported AWS services, services
+    hosted by other AWS accounts (VPC endpoint services), and supported
+    AWS Marketplace partner services. You do not require an internet gateway,
+    NAT device, public IP address, AWS Direct Connect connection, or VPN
+    connection to communicate with the service. 
+* Step Functions is a reliable way to coordinate components and step through
+  the functions of your application. Step Functions provides a graphical
+  console to arrange and visualize the components of your application as a
+  series of steps. This makes it simple to build and run distributed services.
+  Step Functions automatically triggers and tracks each step and retries when
+  there are errors, so your application executes in order and as expected. Step
+  Functions logs the state of each step so when something goes wrong, you
+  can diagnose and debug problems quickly. You can change and add steps
+  without even writing code to evolve your application and innovate faster.
+* Step Functions is part of the AWS serverless platform and supports
+  orchestration of Lambda functions as well as applications based on compute
+  resources, such as Amazon EC2 and Amazon ECS, and additional services
+  like Amazon SageMaker47 and AWS Glue4
+* To build workflows, Step Functions uses the Amazon States Language.
+  Workflows can contain sequential or parallel steps as well as branching
+  steps.  
+* A microservices architecture consists of many different distributed parts that
+ have to be monitored. You can use Amazon CloudWatch50 to collect and track metrics, centralize
+ and monitor log files, set alarms, and automatically react to changes in your
+ AWS environment. CloudWatch can monitor AWS resources such as EC2
+ instances, DynamoDB tables, and RDS DB instances, as well as custom
+ metrics generated by your applications and services, and any log files your
+ applications generate.   
+* You can use Amazon CloudWatch50 to collect and track metrics, centralize
+  and monitor log files, set alarms, and automatically react to changes in your
+  AWS environment. CloudWatch can monitor AWS resources such as EC2
+  instances, DynamoDB tables, and RDS DB instances, as well as custom
+  metrics generated by your applications and services, and any log files your
+  applications generate.
+* You can use CloudWatch to gain system-wide visibility into resource
+  utilization, application performance, and operational health. CloudWatch
+  provides a reliable, scalable, and flexible monitoring solution that you can
+  start using within minutes. You no longer need to set up, manage, and scale
+  your own monitoring systems and infrastructure. In a microservices
+  architecture, the capability of monitoring custom metrics using CloudWatch
+  is an additional benefit because developers can decide which metrics should
+  be collected for each service. 
+* Another popular option–especially for Amazon EKS–is to use Prometheus
+  Prometheus is an open-source monitoring and alerting toolkit that is often
+  used in combination with Grafana 53to visualize the collected metrics.  
+* Consistent logging is critical for troubleshooting and identifying issues.
+  Microservices allow teams to ship many more releases than ever before and
+  encourage engineering teams to run experiments on new features in
+  production. 
+* Distributed Tracing: The central idea behind AWS X-Ray57 is the use of correlation IDs, which
+   are unique identifiers attached to all requests and messages related to a
+   specific event chain. The trace ID is added to HTTP requests in specific
+   tracing headers named X-Amzn-Trace-Id when the request hits the first
+   X-Ray-integrated service (for example, Application Load Balancer or API
+   Gateway) and included in the response. Via the X-Ray SDK, any
+   microservice can read but can also add or update this header    
+* Options for Log Analysis on AWS:
+    Searching, analyzing, and visualizing log data is an important aspect of
+    understanding distributed systems. Amazon CloudWatch Logs Insights is a
+    great service to explore, analyze, and visualize your logs instantly. This
+    allows you to troubleshoot operational problems. Another option for
+    analyzing log files is to use Amazon ES together with Kibana.
+    Amazon ES can be used for full-text search, structured search, analytics,
+    and all three in combination. Kibana is an open source data visualization
+    plugin for Amazon ES that seamlessly integrates with it.
+* Cloud Trail is a useful tool for tracking changes in microservices
+  because it enables all API calls made in the AWS Cloud to be logged and
+  sent to either CloudWatch Logs in real time, or to Amazon S3 within several
+  minutes.    
+* The advantages of storing the audit trails in CloudWatch are that audit trail
+  data is captured in real time, and it is easy to reroute information to Amazon
+  ES for search and visualization. You can configure CloudTrail to log into
+  both Amazon S3 and CloudWatch Logs.            
 
