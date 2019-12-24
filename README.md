@@ -516,3 +516,67 @@ Implementing Microservices on AWS:
   ES for search and visualization. You can configure CloudTrail to log into
   both Amazon S3 and CloudWatch Logs.            
 
+Practicing Continuous Integration and Continuous Delivery on AWS :
+* AWS now offers these CI/CD capabilities as a set of developer services: 
+  AWSCodeStar,
+  AWS CodeCommit,
+  AWS CodePipeline,
+  AWS CodeBuild,
+   and
+  AWS CodeDeploy.
+  
+* use AWS CodeStar to rapidly orchestrate an end-to-end software release workflow using these services.
+* AWS CodePipeline has the flexibility to integrate each service independently with your existing tools. These are highly available, easily
+  integrated services that can be accessed.
+* Continuous integration (CI) is a software development practice where
+  developers regularly merge their code changes into a central repository, after
+  which automated builds and tests are run. CI most often refers to the build or
+  integration stage of the software release process and requires both an
+  automation component (e.g., a CI or build service) and a cultural component
+  (e.g., learning to integrate frequently). The key goals of CI are to find and
+  address bugs more quickly, improve software quality, and reduce the time it
+  takes to validate and release new software updates.
+* The basic challenges of implementing CI include more frequent commits to the
+  common codebase, maintaining a single source code repository, automating
+  builds, and automating testing. Additional challenges include testing in similar
+  environments to production, providing visibility of the process to the team, and
+  allowing developers to easily obtain any version of the application.
+* Continuous delivery (CD) is a software development practice where code
+  changes are automatically built, tested, and prepared for production release. It 
+  expands on continuous integration by deploying all code changes to a testing
+  environment, a production environment, or both after the build stage has been
+  completed. Continuous delivery can be fully automated with a workflow process
+  or partially automated with manual steps at critical points. When continuous
+  delivery is properly implemented, developers always have a deployment-ready
+  build artifact that has passed through a standardized test process.
+* One misconception about continuous delivery is that it means every change
+  committed is applied to production immediately after passing automated tests.
+  However, the point of continuous delivery is not to apply every change to
+  production immediately, but to ensure that every change is ready to go to
+  production.
+* Before deploying a change to production, you can implement a decision process
+  to ensure that the production deployment is authorized and audited. This
+  decision can be made by a person and then executed by the tooling.
+  Using continuous delivery the decision to go live becomes a business decision,
+  not a technical one. The technical validation happens on every commit.
+* Benefits of Continuous Delivery
+    * Automate the Software Release Process
+    * Improve Developer Productivity
+    * Improve Code Quality
+    * Deliver Updates Faster
+* AWS recommends organizing three developer teams for implementing a CI/CD
+  environment: an application team, an infrastructure team, and a tools team
+  The application team creates the application. Application developers own the
+  backlog, stories, and unit tests, and they develop features based on a specified
+  application target. 
+  The infrastructure team writes the code that both creates and configures the
+  infrastructure needed to run the application. This team might use native AWS
+  tools, such as AWS CloudFormation, or generic tools, such as Chef, Puppet, or
+  Ansible. The infrastructure team is responsible for specifying what resources are
+  needed, and it works closely with the application team.
+  The tools team builds and manages the CI/CD pipeline. They are responsible for
+  the infrastructure and tools that make up the pipeline. They are not part of the
+  two-pizza team, however they create a tool that is used by the application and
+  infrastructure teams in the organization.
+* Building the Pipeline:
+*                
