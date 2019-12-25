@@ -579,4 +579,153 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
   two-pizza team, however they create a tool that is used by the application and
   infrastructure teams in the organization.
 * Building the Pipeline:
-*                
+    * Your organization’s journey toward continuous delivery begins with a minimum
+  viable pipeline (MVP).   
+    * AWS CodeStar uses AWS CodePipeline, AWS CodeBuild, AWS CodeCommit,
+      and AWS CodeDeploy with an integrated setup process, tools, templates, and
+      dashboard. AWS CodeStar provides everything you need to quickly develop,
+      build, and deploy applications on AWS. 
+    * While continuous delivery is
+      desirable, you could start out with a simple two-step pipeline that checks the
+      source repository and performs a build action.
+    * AWS CodePipeline is part of CI
+    * After the continuous integration pipeline has been
+      implemented and supporting processes have been
+      established, your teams can start transitioning toward the
+      continuous delivery pipeline. 
+      A Continuous Delivery pipeline is characterized by the
+        presence of Staging and Production steps, where the
+        Production step is performed after a manual approval.    
+    *  We recommend using AWS CloudFormation in an AWS CodePipeline project to track infrastructure
+       changes and tests.
+    *  We recommend that you create specific pipelines for the team branches and another release pipeline
+      for the final product delivery.    
+    * Software can be built through the inclusion of a buildspec.yml file that identifies
+      each of the build steps, including pre- and post- build actions, or specified
+      actions through the CodeBuild tool.
+   * You can use the Jenkins build tool to create delivery pipelines.  However, this approach might not be optimal for larger projects
+      because the current state of the pipeline doesn’t persist between Jenkins restarts, implementing manual approval is not straightforward, and tracking the
+      state of a complex pipeline can be complicated.
+    * Instead, we recommend that you implement continuous delivery with Jenkins by using the AWS Code Pipeline Plugin.
+      The Pipeline plugin allows complex workflows to be described using Groovy-like domain-specific language.
+    Deployment Methods:
+    
+    * All at Once (In-Place Deployment) :
+    All at once or in-place deployment is a method you can use to roll out new
+    application code to an existing fleet of servers. This method replaces all the code
+    in one deployment action. It requires downtime because all servers in the fleet
+    are updated at once. 
+    
+    * Rolling Deployment:
+    With rolling deployment, the fleet is divided into portions so that all of the fleet
+    isn’t upgraded at once. During the deployment process two software versions,
+    new and old, are running on the same fleet. This method allows a zerodowntime update. If the deployment fails, only the updated portion of the fleet
+    will be affected. 
+    
+    * Immutability:
+    The immutable pattern specifies a deployment of application code by starting an
+    entirely new set of servers with a new configuration or version of application
+    code. This pattern leverages the cloud capability that new server resources are
+    created with simple API calls.
+    
+    *The blue/green deployment strategy is a type of immutable deployment which
+     also requires creation of another environment. Once the new environment is up
+     and passed all tests, traffic is shifted to this new deployment. Crucially the old
+     environment, that is, the “blue” environment, is kept idle in case a rollback is
+     needed.
+     
+    Summary of Best Practices :
+    Treat your infrastructure as code
+    o Use version control for your infrastructure code.
+    o Make use of bug tracking/ticketing systems.
+    o Have peers review changes before applying them.
+    o Establish infrastructure code patterns/designs.
+    o Test infrastructure changes like code changes.
+    
+    * Put developers into integrated teams of no more than 12 self-sustaining
+      members.
+    * Have all developers commit code to the main trunk frequently, with no
+      long-running feature branches.
+    * Consistently adopt a build system such as Maven or Gradle across your
+      organization and standardize builds.
+    * Have developers build unit tests toward 100% coverage of the code base.
+    * Ensure that unit tests are 70% of the overall testing in duration, number,
+      and scope.
+   *  Ensure that unit tests are up-to-date and not neglected. Unit test failures
+      should be fixed, not bypassed.
+   * Treat your continuous delivery configuration as code.
+   * Establish role-based security controls (that is, who can do what and
+     when).
+     o Monitor/track every resource possible.
+     o Alert on services, availability, and response times.
+     o Capture, learn, and improve.
+     o Share access with everyone on the team.
+     o Plan metrics and monitoring into the lifecycle.
+   * Keep and track standard metrics.
+     o Number of builds.
+     o Number of deployments.
+     Amazon Web Services – Practicing CI/CD on AWS
+     Page 29
+     o Average time for changes to reach production.
+     o Average time from first pipeline stage to each stage.
+     o Number of changes reaching production.
+     o Average build time.
+   Use multiple distinct pipelines for each branch and team  
+   
+   Don'ts :
+   * Have long-running branches with large complicated merges.
+   * Have manual tests.
+   * Have manual approval processes, gates, code reviews, and security
+     reviews.
+   
+ * Serverless Architectures with AWS Lambda:
+
+    * Serverless applications
+      are ones that don't require you to provision or manage any servers. You can
+      focus on your core product and business logic instead of responsibilities like
+      operating system (OS) access control, OS patching, provisioning, right-sizing,
+      scaling, and availability. By building your application on a serverless platform,
+      the platform manages these responsibilities for you.
+    * No server management – You don’t have to provision or maintain
+      any servers. There is no software or runtime to install, maintain, or
+      administer.
+      • Flexible scaling – You can scale your application automatically or by
+      adjusting its capacity through toggling the units of consumption (for
+      example, throughput, memory) rather than units of individual servers.
+      • High availability – Serverless applications have built-in availability
+      and fault tolerance. You don't need to architect for these capabilities
+      because the services running the application provide them by default.
+      • No idle capacity – You don't have to pay for idle capacity. There is no
+      need to pre-provision or over-provision capacity for things like compute
+      and storage. There is no charge when your code isn’t running.
+      
+    The AWS Cloud provides many different services that can be components of a
+    serverless application.
+    
+      * Compute – AWS Lambda1
+      • APIs – Amazon API Gateway2
+      • Storage – Amazon Simple Storage Service (Amazon S3)3
+      • Databases –Amazon DynamoDB4
+      • Interprocess messaging – Amazon Simple Notification Service (Amazon
+      SNS)5 and Amazon Simple Queue Service (Amazon SQS)6
+      • Orchestration – AWS Step Functions7 and Amazon CloudWatch Events8
+      Amazon Web Services – Serverless Architectures with AWS Lambda
+      Page 2
+      • Analytics – Amazon Kinesis9
+    * Lambda is a high-scale, provision-free serverless compute offering based on
+      functions. It provides the cloud logic layer for your application. Lambda
+      functions can be triggered by a variety of events that occur on AWS or on
+      supporting third-party services. They enable you to build reactive, event-driven
+      systems. When there are multiple, simultaneous events to respond to, Lambda
+      simply runs more copies of the function in parallel. Lambda functions scale
+      precisely with the size of the workload, down to the individual request. Thus, the
+      likelihood of having an idle server or container is extremely low. Architectures
+      that use Lambda functions are designed to reduce wasted capacity.
+    * Lambda can be described as a type of serverless Function-as-a-Service (FaaS).
+      FaaS is one approach to building event-driven computing systems. It relies on
+      functions as the unit of deployment and execution. 
+    * Event sources generates events that event trigger lambda function that in turn services.
+    
+    * Lambda Function Code :
+    
+    *       
