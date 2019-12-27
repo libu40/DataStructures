@@ -728,4 +728,211 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
     
     * Lambda Function Code :
     
-    *       
+    * AWS SAM LOCAL to perform local lambda testing.
+    * When you create a Lambda function (through the AWS Management Console,
+      or using the CreateFunction API) you can reference the S3 bucket and object key where you’ve uploaded the package.18 Alternatively, you can upload the code
+      package directly when you create the function. Lambda will then store your code
+      package in an S3 bucket managed by the service. The same options are available
+      when you publish updated code to existing Lambda functions (through the
+      UpdateFunctionCode API).  
+    * As events occur, your code package will be downloaded from the S3 bucket,
+      installed in the Lambda runtime environment, and invoked as needed. This
+      happens on demand, at the scale required by the number of events triggering
+      your function, within an environment managed by Lambda.
+    * Lambda provides
+      the Invoke API that enables you to directly invoke your function, you will likely
+      only use it for testing and operational purposes.
+    * Invocation Patterns: Push and Pull model
+    * Push Model – Your Lambda function is invoked every time a particular
+      event occurs within another AWS service (for example, a new object is
+      added to an S3 bucket).
+    * Pull Model – Lambda polls a data source and invokes your function
+      with any new records that arrive at the data source, batching new
+      records together in a single function invocation (for example, new
+      records in an Amazon Kinesis or Amazon DynamoDB stream).
+* Lambda Function Configuration:
+    * Each and every Lambda function has a default
+      version built in: $LATEST. You can address the most recent code that has been
+      uploaded to your Lambda function through the $LATEST version. 
+    * You can take a snapshot of the code that’s currently referred to by $LATEST and create a
+      numbered version through the PublishVersion API.31 Also, when updating your
+      function code through the UpdateFunctionCode API, there is an optional
+      Boolean parameter, publish.32 By setting publish: true in your request,
+      Lambda will create a new Lambda function version, incremented from the last
+      published version.
+    * arn:aws:lambda:[region]:[account]:function:[fn_name]:[version]
+    * arn:aws:lambda:[region]:[account]:function:[fn_name]:[alias]
+ * Software Development Life Cycle (SDLC) best practice dictates that developers
+   separate their code and their config. You can achieve this by using environment
+   variables with Lambda. Environment variables for Lambda functions enable you
+   to dynamically pass data to your function code and libraries without making
+   changes to your code. 
+ * For any sensitive information that will be stored as a
+   Lambda function environment variable, we recommend you encrypt those
+   values using the AWS Key Management Service (AWS KMS) prior to function
+   creation, storing the encrypted cyphertext as the variable value. Then have your
+   Lambda function decrypt that variable in memory at execution time.
+ * A dead letter queue is either an SNS topic or SQS queue that you have
+   designated as the destination for all failed invocation events. If a failure event
+   occurs, the use of a dead letter queue allows you to retain just the messages that
+   failed to be processed during the event. Once your function is able to be invoked
+   again, you can target those failed events in the dead letter queue for
+   reprocessing. The mechanisms for reprocessing/retrying the function
+   invocation attempts placed on to your dead letter queue is up to you.
+ * You can designate the maximum amount of time a single function execution is
+   allowed to complete before a timeout is returned. The maximum timeout for a
+   Lambda function is 300 seconds at the time of this publication, which means a
+   single invocation of a Lambda function cannot execute longer than 300 seconds.
+   You should not always set the timeout for a Lambda function to the maximum.
+   There are many cases where an application should fail fast. Because your
+   Lambda function is billed based on execution time in 100-ms increments,
+   avoiding lengthy timeouts for functions can prevent you from being billed while
+   a function is simply waiting to timeout.
+
+* Serverless Best Practices:
+    * Security, reliability, performance efficiency, cost optimization,
+      and operational excellence. 
+    * It is based on five pillars: security, reliability, performance efficiency, cost optimization,
+      and operational excellence. 
+    * It is based on five pillars: security, reliability, performance efficiency, cost optimization,
+      and operational excellence. 
+    * Security Best Practices :
+        * One IAM Role per Function
+        * Temporary AWS Credentials
+        * Persisting Secrets: Lambda environment variables with encryption helper, AWS EC2 system parameter manage store, Using Secrets
+            API Authorization, VPC Security
+    * Reliability Best Practices:
+    * Serverless Development Best Practices:
+        * Infrastructure as Code – the AWS Serverless Application Model (AWS SAM).
+        * Local Testing – AWS SAM Loca
+    * Coding and Code Management Best Practices :
+        * Business Logic outside the Handler
+        * Control Dependencies
+        
+*  AWS Lambda eliminates the complexity of dealing with servers at all levels of the technology
+  stack, and introduces a pay-per-request billing model where there are no more
+  costs from idle compute capacity.
+* A serverless application runs in the public cloud, on a service such as AWS Lambda, which takes care of receiving events or client invocations and then
+  instantiates and runs the code.
+* Advantages:
+    * There is no need to provision, deploy, update, monitor, or otherwise manage servers. 
+    * The application scales automatically, triggered by its actual use.
+    * In addition to scaling, availability and fault tolerance are built in.
+    * There are no charges for idle capacity. 
+    
+* Serverless Application Use Cases:
+ * Web apps and websites – Eliminating servers makes it possible to
+   create web apps that cost almost nothing when there is no traffic, while
+   simultaneously scaling to handle peak loads, even unexpected ones.
+ * Mobile backends – Serverless mobile backends offer a way for
+   developers who focus on client development to easily create secure,
+   highly available, and perfectly scaled backends without becoming experts
+   in distributed systems design.
+ * Media and log processing – Serverless approaches offer natural
+   parallelism, making it simpler to process compute-heavy workloads
+   without the complexity of building multithreaded systems or manually
+   scaling compute fleets.
+ * IT automation – Serverless functions can be attached to alarms and
+   monitors to provide customization when required. 
+ * IoT backends – The ability to bring any code, including native libraries,
+   simplifies the process of creating cloud-based systems that can
+   implement device-specific algorithms.
+ * Chatbots
+ 
+* Encrypting data at rest:
+    * Encryption on any system requires three components: (1) data to encrypt; (2) a method
+      to encrypt the data using a cryptographic algorithm; and (3) encryption keys to be used
+      in conjunction with the data and the algorithm,
+    * Three models of encryption 
+        * You control the encryption method and entire KMI(Model 1).
+        * You control the encryption method and AWS will take responsibility of others (Model 2).
+        * AWS control the encryption method and entire KMI(Model 3).
+    Model 1:
+    AWS has no access to your keys and cannot perform encryption or decryption on
+    your behalf. You are responsible for the proper storage, management, and use of keys
+    to ensure the confidentiality, integrity, and availability of you data.
+    
+   * AWS Key Management Service (KMS) is a managed encryption service that lets you
+     provision and use keys to encrypt your data in AWS services and your applications. 
+   * AWS KMS and other services that encrypt your data directly use a method called
+     envelope encryption to provide a balance between performance and security. 
+     1. A data key is generated by the AWS service at the time you request your data to be	
+        encrypted.
+     2. Data key is used to encrypt the data.
+     3. The	data key is	then encrypted	with a key-encrypting key unique to	the	service	storing	
+        your data.
+     4. The	encrypted data key and	the	encrypted data are then	stored	by	the	AWS	storage	
+        service	on	your behalf.
+    The following AWS services offer a variety of encryption features to choose from. 
+    There are three ways of encrypting your data in Amazon S3 using server-side
+    encryption. 
+    
+    Server-side encryption: You can set an API flag, or check a box in the AWS
+    Management Console, to have data encrypted before it is written to disk in Amazon
+    S3. Each object is encrypted with a unique data key. As an additional safeguard, this
+    key is encrypted with a periodically rotated master key managed by Amazon S3.
+    Amazon S3 server-side encryption uses 256-bit Advanced Encryption Standard
+    (AES) keys for both object and master keys. This feature is offered at no additional
+    cost beyond what you pay for using Amazon S3.
+    
+    Server-side encryption using customer provided keys: You can use your own
+    encryption key while uploading an object to Amazon S3. This encryption key is used
+    by Amazon S3 to encrypt your data using AES-256. After the object is encrypted, the
+    encryption key you supplied is deleted from the Amazon S3 system that used it to
+    protect your data. When you retrieve this object from Amazon S3, you must provide
+    the same encryption key in your request. Amazon S3 verifies that the encryption key
+    matches, decrypts the object, and returns the object to you. This feature is offered at
+    no additional cost beyond what you pay for using Amazon S3.
+    
+    Server-side encryption using KMS: You can encrypt your data in Amazon S3 by
+    defining an AWS KMS master key within your account that you want to use to
+    encrypt the unique object key (referred to as a data key in figure 8) that will ultimately
+    encrypt your object. When you upload your object, a request is sent to KMS to create
+    an object key. KMS generates this object key and encrypts it using the master key 
+    that you specified earlier; KMS then returns this encrypted object key along with the
+    plaintext object key to Amazon S3. The Amazon S3 web server encrypts your object
+    using the plaintext object key and stores the now encrypted object (with the
+    encrypted object key) and deletes the plaintext object key from memory. To retrieve
+    this encrypted object, Amazon S3 sends the encrypted object key to AWS KMS.
+    AWS KMS decrypts the object key using the correct master key and returns the
+    decrypted (plaintext) object key to S3. With the plaintext object key, S3 decrypts the
+    encrypted object and returns it to you.
+    
+  *  AWS WAF is designed to protect your web applications from
+    attacks that can compromise availability or security, or otherwise consume excessive
+    resources.17 AWS WAF works inline with CloudFront or Application Load Balancer,
+    along with your custom rules, to defend against attacks such as cross-site scripting,
+    SQL injection, and DDoS.
+  * AMI are region specific.
+ 
+* S3:
+    * Read-after-write consistency for PUT.
+    * Eventual consistency for GET.
+    * x-amz-server-side-encryption : Indicate to enable or not.
+    * x-amz-version-id: Indicate object version.
+    * x-amz-delete-marker: When enabled object version refers whether object is a delete marker or not.
+    * x-amz-storage-class: storage class for storing objects.
+    * x-amz-website-redirection-location
+    * x-amz-server-side-encryption-aws-kms-key-id: If server side encryption is present and has value aws:kms indicates Id of the 
+    * To create bucket in a specified region: aws s3 mb s3://bucketname --region us-east-1
+    * aws s3 ls s3://bucketname
+    * aws s3 cp test.txt s3://bucketname/test2.txt
+    * aws s3 cp myDir s3://bucketname/ --recursive --exclude "*.jpg"
+    * aws s3api put-bucket-versioning --bucket bucketname --versioning-configuration Status=Enabled
+    * aws s3api put-bucket-tagging --bucket bucketname --accelerate-configuration Enabled
+    * aws s3api get-bucket-policy --bucket mybucket --query Policy --output text > policy.json
+    * aws s3api put-bucket-policy --bucket mybucket --policy file://policy.json
+    * aws s3api put-bucket-analytics-configuration --bucket bucketname --id 123 --analytics-configuration file://analytics.json (Bucket analysis)
+    * aws s3api put-bucket-metrics-configuration --bucket bucketname --id 123 --metrics-configuration file://metrics.json
+    * aws s3api put-bucket-cors --bucket bucketname --cors-configuration file://cors.json
+    * aws s3api put-bucket-notification --bucket bucketname --notification-configuration file://notification.json
+    * aws s3api put-bucket-replication --bucket bucketname --replication-configuration  file://replication.json
+    * aws ec2 describe-instances
+    * aws ec2 start-instances --instance-ids i-12345678c 
+    * aws ecs create-cluster
+        --cluster-name=NAME
+        --generate-cli-skeleton
+      
+    * aws ecs create-service
+   
+  
