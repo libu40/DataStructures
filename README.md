@@ -677,8 +677,8 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
    * Have manual tests.
    * Have manual approval processes, gates, code reviews, and security
      reviews.
-   
- * Serverless Architectures with AWS Lambda:
+
+  Serverless Architectures with AWS Lambda:
 
     * Serverless applications
       are ones that don't require you to provision or manage any servers. You can
@@ -699,7 +699,8 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
       need to pre-provision or over-provision capacity for things like compute
       and storage. There is no charge when your code isn’t running.
       
-    The AWS Cloud provides many different services that can be components of a
+
+ The AWS Cloud provides many different services that can be components of a
     serverless application.
     
       * Compute – AWS Lambda1
@@ -712,6 +713,7 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
       Amazon Web Services – Serverless Architectures with AWS Lambda
       Page 2
       • Analytics – Amazon Kinesis9
+  
     * Lambda is a high-scale, provision-free serverless compute offering based on
       functions. It provides the cloud logic layer for your application. Lambda
       functions can be triggered by a variety of events that occur on AWS or on
@@ -934,6 +936,29 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
         --generate-cli-skeleton
       
     * aws ecs create-service
+      * Customers may use four mechanisms for controlling access to Amazon S3 resources: Identity and Access Management (IAM) policies,
+     bucket policies, Access Control Lists (ACLs), and Query String Authentication( customers can create a URL to an Amazon S3 object which is only valid for a limited time.
+    ).
+    * Amazon S3 support data access auditing is CloudTrail
+    * You can choose to encrypt data using SSE-S3, SSE-C, SSE-KMS, or
+    * a client library such as the Amazon S3 Encryption Client.
+      All four enable you to store sensitive data encrypted at rest in Amazon S3.
+      * SSE-S3 provides an integrated solution where Amazon handles key management and key protection using multiple layers of security.
+    You should choose SSE-S3 if you prefer to have Amazon manage your keys.
+      * SSE-C enables you to leverage Amazon S3 to perform the encryption and decryption of your objects while retaining control of the keys used to encrypt objects.
+       With SSE-C, you don’t need to implement or use a client-side library to perform the encryption and decryption of objects you store in Amazon S3, but you do need to manage the keys that you send to Amazon S3 to encrypt and decrypt objects. Use SSE-C if you want to maintain your own
+     encryption keys, but don’t want to implement or leverage a client-side encryption library.
+
+    * Versioning offers an additional level of protection by providing a means of recovery when customers accidentally overwrite or delete objects.
+      This allows you to easily recover from unintended user actions and application failures. You can also use Versioning for data retention and archiving.
+    * You can start using Versioning by enabling a setting on your Amazon S3 bucket.
+    * When a user performs a DELETE operation on an object, subsequent simple (un-versioned) requests will no longer retrieve the object. However,
+      all versions of that object will continue to be preserved in your Amazon S3 bucket and can be retrieved or restored. Only the owner of an Amazon S3 bucket can permanently delete a version.
+    *  With S3 Access Points, you can now easily create hundreds of access points per bucket, representing a new way of provisioning access to shared data sets. Access Points provide a customized path
+       into a bucket, with a unique hostname and access policy that enforces the specific permissions and network controls for any request made through the access point.
+    *  An access point is a separate Amazon resource created for a bucket with an Amazon Resource Name (ARN), hostname, access control policy, and a network origin control.(in the format of https://[access_point_name]-[account ID].s3-accesspoint.[region].amazonaws.com)
+
+
     
 * DynamoDB:
 
