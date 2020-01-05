@@ -934,5 +934,167 @@ Practicing Continuous Integration and Continuous Delivery on AWS :
         --generate-cli-skeleton
       
     * aws ecs create-service
+    
+* DynamoDB:
+
+ * Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. 
+   DynamoDB lets you offload the administrative burdens of operating and scaling a distributed database so that you don't have to worry 
+   about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling. DynamoDB also offers encryption at rest.
+ * With point-in-time recovery, you can restore that table to any point in time during the last 35 days.
+ * DynamoDB automatically spreads the data and traffic for your tables over a sufficient number of servers to handle your throughput and storage requirements, 
+   while maintaining consistent and fast performance. All of your data is stored on solid-state disks (SSDs) and is automatically replicated across multiple Availability Zones in an AWS Region, 
+   providing built-in high availability and data durability. You can use global tables to keep DynamoDB tables in sync across AWS Regions. 
+ * In DynamoDB, tables, items, and attributes are the core components that you work with. 
+ * In a table that has a partition key and a sort key, it's possible for two items to have the same partition key value. However, those two items must have different sort key values.
+ * You can create one or more secondary indexes on a table. A secondary index lets you query the data in the table using an alternate key, in addition to queries against the primary key. 
+   DynamoDB doesn't require that you use indexes, but they give your applications more flexibility when querying your data. 
+   After you create a secondary index on a table, you can read data from the index in much the same way as you do from the table.
+ * DynamoDB supports two kinds of indexes:
+   Global secondary index – An index with a partition key and sort key that can be different from those on the table.
+   Local secondary index – An index that has the same partition key as the table, but a different sort key.
+ * In the example Music table shown previously, you can query data items by Artist (partition key) or by Artist and SongTitle (partition key and sort key). 
+    What if you also wanted to query the data by Genre and AlbumTitle? To do this, 
+   you could create an index on Genre and AlbumTitle, and then query the index in much the same way as you'd query the Music table.
+ * DynamoDB Streams is an optional feature that captures data modification events in DynamoDB tables. The data about these events appear in the stream in near-real time, and in the order that the events occurred.
+   Each event is represented by a stream record. If you enable a stream on a table, DynamoDB Streams writes a stream record whenever one of the following events occurs:
+   A new item is added to the table: The stream captures an image of the entire item, including all of its attributes.
+   An item is updated: The stream captures the "before" and "after" image of any attributes that were modified in the item.
+   An item is deleted from the table: The stream captures an image of the entire item before it was deleted.
+ * Each stream record also contains the name of the table, the event timestamp, and other metadata. Stream records have a lifetime of 24 hours; after that, they are automatically removed from the stream.
+ * CreateTable – Creates a new table. Optionally, you can create one or more secondary indexes, and enable DynamoDB Streams for the table.
+   DescribeTable– Returns information about a table, such as its primary key schema, throughput settings, and index information.
+   ListTables – Returns the names of all of your tables in a list.
+   UpdateTable – Modifies the settings of a table or its indexes, creates or removes new indexes on a table, or modifies DynamoDB Streams settings for a table.
+   DeleteTable – Removes a table and all of its dependent objects from DynamoDB.
+ * Creating Data
+   PutItem – Writes a single item to a table. You must specify the primary key attributes, but you don't have to specify other attributes.
+   BatchWriteItem – Writes up to 25 items to a table. This is more efficient than calling PutItem multiple times because your application only needs a single network round trip to write the items. You can also use BatchWriteItem for deleting multiple items from one or more tables.
+ * Reading Data
+   GetItem – Retrieves a single item from a table. You must specify the primary key for the item that you want. You can retrieve the entire item, or just a subset of its attributes.
+   BatchGetItem – Retrieves up to 100 items from one or more tables. This is more efficient than calling GetItem multiple times because your application only needs a single network round trip to read the items.
+   Query – Retrieves all items that have a specific partition key. You must specify the partition key value. You can retrieve entire items, or just a subset of their attributes. Optionally, you can apply a condition to the sort key values so that you only retrieve a subset of the data that has the same partition key. You can use this operation on a table, provided that the table has both a partition key and a sort key. You can also use this operation on an index, provided that the index has both a partition key and a sort key.
+   Scan – Retrieves all items in the specified table or index. You can retrieve entire items, or just a subset of their attributes. Optionally, you can apply a filtering condition to return only the values that you are interested in and discard the rest.
+ * Updating Data
+   UpdateItem – Modifies one or more attributes in an item. You must specify the primary key for the item that you want to modify. You can add new attributes and modify or remove existing attributes. You can also perform conditional updates, so that the update is only successful when a user-defined condition is met. Optionally, you can implement an atomic counter, which increments or decrements a numeric attribute without interfering with other write requests.
    
-  
+   Deleting Data
+   DeleteItem – Deletes a single item from a table. You must specify the primary key for the item that you want to delete.
+   BatchWriteItem – Deletes up to 25 items from one or more tables. This is more efficient than calling DeleteItem multiple times because your application only needs a single network round trip to delete the items. You can also use BatchWriteItem for adding multiple items to one or more tables.
+ * DynamoDB Streams
+   DynamoDB Streams operations let you enable or disable a stream on a table, and allow access to the data modification records contained in a stream.
+   
+   ListStreams – Returns a list of all your streams, or just the stream for a specific table.
+   DescribeStream – Returns information about a stream, such as its Amazon Resource Name (ARN) and where your application can begin reading the first few stream records.
+   GetShardIterator – Returns a shard iterator, which is a data structure that your application uses to retrieve the records from the stream.
+   GetRecords – Retrieves one or more stream records, using a given shard iterator. 
+ * Transactions
+   Transactions provide atomicity, consistency, isolation, and durability (ACID) enabling you to maintain data correctness in your applications more easily.
+   
+   TransactWriteItems – A batch operation that allows Put, Update, and Delete operations to multiple items both within and across tables with a guaranteed all-or-nothing result.
+   TransactGetItems – A batch operation that allows Get operations to retrieves multiple items from one or more tables.
+   
+ * Read Consistency:
+    When your application writes data to a DynamoDB table and receives an HTTP 200 response (OK), the write has occurred and is durable. The data is eventually consistent across all storage locations, usually within one second or less.
+    
+ *Formula: Read Capacity: (ITEM SIZE (rounded up to the next 4KB multiplier) / 4KB) * # of items
+                          (Round up to the nearest 4 KB multiplier)
+           Write Capacity: (ITEM SIZE (rounded up to the next 1KB multiplier) / 1KB) * # of items
+                           (Round up to the nearest 1 KB multiplier)
+ * We have an item size of 3 KB and we want to read 80 (strongly consistent read) items per second per table. What is the read capacity required?
+    80 * (3KB (round up to 4) / 4KB)
+    80 * 1 = 80 required provisioned read throughput
+    
+    Eventually consistent reads would cut that in half:
+    (80 * 1) / 2 = 40 required read capacity
+ * WRITE CAPACITY: We need 10 writes per second, and we have an item of size 1.5KB, how much throughput is required?
+    •(ITEM SIZE (1.5KB) / 1 KB) x 10 = 20 capacity units
+    
+ * CREATETABLE {
+       TableName : "Music",
+       KeySchema: [       
+           { 
+               AttributeName: "Artist", 
+               KeyType: "HASH", //Partition key
+           },
+           { 
+               AttributeName: "SongTitle", 
+               KeyType: "RANGE" //Sort key
+           }
+       ],
+       AttributeDefinitions: [
+           { 
+               AttributeName: "Artist", 
+               AttributeType: "S" 
+           },
+           { 
+               AttributeName: "SongTitle", 
+               AttributeType: "S" 
+           }
+       ],
+       ProvisionedThroughput: {       // Only specified if using provisioned mode
+           ReadCapacityUnits: 1, 
+           WriteCapacityUnits: 1
+       }
+   }
+ * Reading Data from a Table:
+    GetItem – Retrieves a single item from a table. This is the most efficient way to read a single item because it provides direct access to the physical location of the item. (DynamoDB also provides the BatchGetItem operation, allowing you to perform up to 100 GetItem calls in a single operation.)
+    Query – Retrieves all of the items that have a specific partition key. Within those items, you can apply a condition to the sort key and retrieve only a subset of the data. Query provides quick, efficient access to the partitions where the data is stored. (For more information, see Partitions and Data Distribution.)
+    Scan – Retrieves all of the items in the specified table. (This operation should not be used with large tables because it can consume large amounts of system resources.)
+ * You can add a ProjectionExpression parameter to return only some of the attributes.
+ * Query: select with where {
+       TableName: "Music",
+       KeyConditionExpression: "Artist = :a and SongTitle = :t",
+       ExpressionAttributeValues: {
+           ":a": "No One You Know",
+           ":t": "Call Me Today"
+       }
+   }
+ * Scan: select without where // Return all of the values for Artist and Title
+   {
+       TableName:  "Music",
+       ProjectionExpression: "Artist, Title"
+   }
+   
+ * DynamoDB supports two different kinds of indexes:
+   Global secondary indexes – The primary key of the index can be any two attributes from its table.
+   Local secondary indexes – The partition key of the index must be the same as the partition key of its table. However, the sort key can be any other attribute.
+ * Global secondary index {
+    TableName: "Music",
+    AttributeDefinitions:[
+        {AttributeName: "Genre", AttributeType: "S"},
+        {AttributeName: "Price", AttributeType: "N"}
+    ],
+    GlobalSecondaryIndexUpdates: [
+        {
+            Create: {
+                IndexName: "GenreAndPriceIndex",
+                KeySchema: [
+                    {AttributeName: "Genre", KeyType: "HASH"}, //Partition key
+                    {AttributeName: "Price", KeyType: "RANGE"}, //Sort key
+                ],
+                Projection: {
+                    "ProjectionType": "ALL"
+                },
+                ProvisionedThroughput: {                                // Only specified if using provisioned mode
+                    "ReadCapacityUnits": 1,"WriteCapacityUnits": 1
+                }
+            }
+        }
+    ]
+}
+* aws dynamodb list-tables --endpoint-url http://localhost:8000 (To access DynamoDB running locally, use the --endpoint-url parameter)
+* Point-in-time recovery helps protect your DynamoDB tables from accidental write or delete operations. With point-in-time recovery, you don't have to worry about creating, maintaining, or scheduling on-demand backups. For example, suppose that a test script writes accidentally to a production DynamoDB table. With point-in-time recovery, 
+you can restore that table to any point in time during the last 35 days. DynamoDB maintains incremental backups of your table.
+* TransactWriteItems API is a synchronous and idempotent write operation that groups up to 25 write actions in a single all-or-nothing operation. 
+These actions can target up to 25 distinct items in one or more DynamoDB tables within the same AWS account and in the same Region.
+* A TransactWriteItems operation differs from a BatchWriteItem operation in that all the actions it contains must be completed successfully, 
+or no changes are made at all. With a BatchWriteItem operation, it is possible that only some of the actions in the batch succeed while the others do not.
+* TransactGetItems API s a synchronous read operation that groups up to 25 Get actions together. These actions can target up to 25 distinct items in one 
+    or more DynamoDB tables within the same AWS account and Region.  
+* Item Cache : GetItem and BatchGetItem operations. 
+  Query Cache : Query and Scan operations
+* iam:CreateRole
+  iam:CreatePolicy
+  iam:AttachRolePolicy
+  iam:PassRole
+
