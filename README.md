@@ -3,7 +3,9 @@
 * Encryption at rest for EC2 and EBS then configure encryption when creating the EBS volume.
 * Application constantly receiving read request to improve the performance of that where the application is stored in S3 then configure cloudfront CDN.
 * S3 do not offer read after write consistency for PUTS of objects.
-* EC2 servers with Spread placement group. Spread Placement Groups are recommended for applications that have a small number of critical instances which need to be kept separate from each other. Launching instances in a Spread Placement Group reduces the risk of simultaneous failures that might occur when instances share the same underlying hardware. Spread Placement Groups provide access to distinct hardware, and are therefore suitable for mixing instance types or launching instances over time. 
+* EC2 servers with Spread placement group. Spread Placement Groups are recommended for applications that have a small number of critical instances which need to be kept separate from each other. 
+  Launching instances in a Spread Placement Group reduces the risk of simultaneous failures that might occur when instances share the same underlying hardware. Spread Placement Groups provide access to distinct hardware, 
+  and are therefore suitable for mixing instance types or launching instances over time. 
 * S3 do not provides eventual consistency for PUT and deletes.
 * To retreive instance metadata or user data then http://169.254.169.254.
 * create a static hosting website in a bucket called "acloudguru" in Sydney using S3. What would the new URL endpoint be 
@@ -1122,4 +1124,23 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   iam:CreatePolicy
   iam:AttachRolePolicy
   iam:PassRole
+  
+* Exam Questions :
 
+* Team lead finished creating the project, You have access to run the build but not the project specify different location to for the build.
+  Specify the new location of the build in the buildspec.yml and run start-build command.
+* REST API specific Ip address to block: WAF, Resource Policies
+* Http 504 errors frequently and developer would like to alarm the trigger only If it breaches two evaluation period or more 
+  Aggregate the data before sending it to cloudwatch by using static sets.
+* Developer needs to change instance type from t1 to m4.How to do the change most effectively
+  Create a configuration file in s3 and use it during environment creation.
+* When working on development use AWS keys. Username and password for console and access keys for  
+* Ops work is best suited when you have multiple stacks and want to use configuration tools for environment.
+* MultiAZ for high availability and AWS Elastic cache offers fully managed redis and mem cached.
+* The multipart upload API enables you to upload large objects in parts.
+* To override default buildspec filename, location or both run AWS CLI create-project or update command setting the buildspec value to path to alternate build spec file 
+  run AWS CLI start-build command setting buildspec override value to path to alternative build spec file.
+* AWS KMS encrypt keys the master keys you create are protected by FIPS.
+* Wirethrough strategy : adds or upddates whenver data written to DB.
+* Stage variables acts as environment variables that you define as configuration attributes associated with a deployment stage of an API.
+* 
