@@ -1141,6 +1141,20 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * To override default buildspec filename, location or both run AWS CLI create-project or update command setting the buildspec value to path to alternate build spec file 
   run AWS CLI start-build command setting buildspec override value to path to alternative build spec file.
 * AWS KMS encrypt keys the master keys you create are protected by FIPS.
-* Wirethrough strategy : adds or upddates whenver data written to DB.
+* Wirethrough strategy : adds or updates whenever data written to DB.
 * Stage variables acts as environment variables that you define as configuration attributes associated with a deployment stage of an API.
+* Elastic cache is ideal for storing the session data.
+* AWS cloud watch standard monitoring is for 5 minutes and detail monitoring is 1 minute. For custom create a high resolution
+  custom metric.
+* When ever change in lambda version needs to be notified to S3 notification configuration then the best way to update is
+  creating Lambda alias in the notification configuration. No changes required to be done in S3 configuration.
+* If a developer has access to run the build and wants to edit the project then from AWS CLI changing the parameters from command line.
+  So with buildSpecOverride property with value set it can refer to either inline build spec or environment variable CODEBUILD_SRC_DIR.
+* A published lambda version is $LATEST version where no configuration and ARN can't be modified.
+* An application assumes a role to receive permission to carry out required tasks and a interact with AWS resources. Application calls
+  AWS STS AssumeRole API which returns temporary credentials. We can also pass JSON pplicy to restrict the permissions of temporary credentials
+  in case if we want to share the credentials to another account.
+* If traffic needs to be shifted from old to new lambda function canary release in code deploy can be specified. Canary10percent5minutes
+  is 10 percent of traffic is shifted in the first interval and the remaining all traffic is shifted after 5 minutes to new function.
+* AWS RDS with TDE(Transparent Data Encryption) allows to encrypt and decrypt the data stored from the storage.
 * 
