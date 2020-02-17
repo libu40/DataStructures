@@ -1201,5 +1201,19 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   arn:aws:kms:region:acct-id:key/key-id
 * ELB provides access logs where It captures detailed information about the request of load balancer. Each log contains information about ip address,
   request paths..Cloudtrail is used to capture all API calls for ELB as events. For monitoring cloudtrail doesn't suits access logs on loadbalancer fits.
+* Reduced page size and large number of smaller operations reduces throttling.
+* A stage variables can be passed as part of HTTP integration URL in the following ways.
+  1. A full URI without protocol
+  2. A full domain
+  3. A subdomain
+  4. A path
+  5. A query string
+  
+* AWS OpsWork is a configuration management service that provides managed instance of Puppet and Chef. These are automation patforms which allow to code the configuration of servers 
+  to be deployed and managed in EC2 instance.
+* You can install cloud watch agent on the machine and then configure to send the logs for web server to central location in cloudwatch.
+* AWS cognito streams gives developers control and insight into their data stored in Cognito. they can use Kinesis streams for analysis.
+* When AWS lambda function wants to access the resources in VPO then vpc subnet Id's and Security group Id's needs to be provided. So that it can access the resources of VPC.
+* AWS ElasticBeanStalk supports custom platform which is created using packers where it lets you develop a new platform reducing the burden from EBS.
+* EBS supports two methods of saving configuration settings in YAML or JSON and can be included in the application source code in a directory named .ebextension and deployed.
 * 
-
