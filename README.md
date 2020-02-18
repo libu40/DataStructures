@@ -1157,4 +1157,25 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * If traffic needs to be shifted from old to new lambda function canary release in code deploy can be specified. Canary10percent5minutes
   is 10 percent of traffic is shifted in the first interval and the remaining all traffic is shifted after 5 minutes to new function.
 * AWS RDS with TDE(Transparent Data Encryption) allows to encrypt and decrypt the data stored from the storage.
+* EBS saves configuration in two methods YAML or JSON this can be included in the source code and that can be included in the .ebextension
+  folder and that needs to be deployed as part of application source bundle. You create and manage configurations locally.
+* A lambda function created with default settings will have the timeout of 3 seconds and maximum of 300 seconds.
+* When lambda throttled exception retry and Lambda socket exception is thrown when the function not able to respond in 5 seconds.
+* When application wants to process the messages in the order they have received and with no duplicates then FIFO SQS queues needs to be used.
+  and we cannot enable FIFO on existing SQS queue.
+* AWS code deploy hook lifecycle ApplicationStop -> BeforeInstall ->After install -> ApplicationStart.
+* For debugging the Lambda function you can put logs in the code and Lambda will automatically integrate with Amazon cloud  watch logs
+  and pushes the logs from the code to cloudwatch logs group associated with lambda function.
+* When developers need to access the code repository in another account then create a cross account access add IAM users of that group in another
+  account.
+* Any lambda function invoked asynchronously is retried twice before event is discarded.If you are unsure why then use DeadLetter Queue(DLQ).
+  to direct the unprocessed events to SQS or SNS to analyze the failure later.
+* Serverside encryption in KMS with CMK.
+* Kinesis Data Streams with shards allows to order the data when application calls the kinesis API PUTRECORD to a shard
+  using a sequenceNumberOrdering parameter. Setting this parameter strictly ensures ordering.
+* AWS KMS uses GenerateDataKey for upload or Decrypt for downloads request to AWS on your behalf.
+* S3 maintains index on the object key names. object keys determines which partition the key is stored in. Using sequential prefix
+  such as timestamp or alphabetical sequence makes S3 to target specific partition.
+* If your workload is mix of request types introduce some randomness to your key names by adding hash before the prefix to the
+  key name.
 * 
