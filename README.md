@@ -1157,6 +1157,7 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * If traffic needs to be shifted from old to new lambda function canary release in code deploy can be specified. Canary10percent5minutes
   is 10 percent of traffic is shifted in the first interval and the remaining all traffic is shifted after 5 minutes to new function.
 * AWS RDS with TDE(Transparent Data Encryption) allows to encrypt and decrypt the data stored from the storage.
+<<<<<<< HEAD
 * EBS saves configuration in two methods YAML or JSON this can be included in the source code and that can be included in the .ebextension
   folder and that needs to be deployed as part of application source bundle. You create and manage configurations locally.
 * A lambda function created with default settings will have the timeout of 3 seconds and maximum of 300 seconds.
@@ -1178,4 +1179,65 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   such as timestamp or alphabetical sequence makes S3 to target specific partition.
 * If your workload is mix of request types introduce some randomness to your key names by adding hash before the prefix to the
   key name.
+=======
+* When you create an alarm we specify three things 1. Period 2. Evaluation Period and Datapoints to Alarm.
+* The length of time to evaluate the metric to create indivitual data points for a metric called Period and the number of most recent data points evaluates
+  Evaluation Period to determine the current state. The number of data points breaching the alarm goes to ALARM state.
+* AWS RDS read replicas provide enhanced performance and durability of database. Read heavy requirement.
+* AWS DAX addresses 3 issues
+  1. In memory cache DAX reduces the response time for eventually consistent reads from milliseconds to microseconds.
+  2. Reduces operational and application complexity to manage.
+  3. Increased throughput and cost savin. Heavy workload applications useful.
+* To deploy serveless application we use SAM but to refer another application in S3 and embeded we use AWS::Serverless:Application.
+  AWS::Serverless:Api used to create API gateway and methods to invoke 
+  AWS::Serverless:Function refers configuration for ceeating lambda function
+* API frontend interaction: Method request and Method response
+  API backend interaction: Integration request and response
+* AWS Xray shows Lambda traces in lambda function which allows detail streaming of downstream services.
+* Two ways to manage server side encryption for S3 artifacts
+  * AWS codepipeline creates S3 artifact and default managed by SSE-KMS 
+  * We maintain and create customer managed SSE-KMS keys.
+* With envelope encryption the unencrypted data is encrypted using plan text data key. The data key is further encrypted using plaintext master key . The 
+  plaintext master key is securely stored in KMS.and known as customer master keys.
+* ECS is a fully managed orchestration service that supports Docker containers.
+* Two ways to choose partition keys 1. Use high cardinality attributes 2. Use composite attributes.
+* Exponential back off algorithm is progressive longer wait.
+* In AWS code pipeline If an action is not fully completed then entire process will halt.
+* User pools: Signup and sign in process with UI and social  sign in user  directory management.Customized workflows and user migration 
+  through AWS lambda triggers.
+* Dynamodb uses CMK to encrypt a unique data key for the table. With Dynamodb its achieved by AWS managed or owned. AWS owned is free of charge
+  but AWS managed is chargeable. Customer managed AWS are not supported encryption at rest. 
+* Dynamodb offers fully managed encryption at rest using KMS.
+* Blue green swap url rollback process.
+* AWS step functions is a webservice that allows to coordinate the components of web application and microservice using visual workflows.
+  You build applications and scale the indivitual components. Also coordinate the components.
+* AWS EBS also uses KMS CMK when creating encrypted volumes and any snapshots created from them.
+* Lambda@Edge is an extension of Lambda where it executes the content that customize the contents of cloudfront. You can place function in one region
+  and execute globally. It scales automatically and excutes at viewer region to improve the performance and latency.
+* AWS code star is been used for creating managing and working with software development projects quickly. Permissions can also been managed.
+  AWS code pipeline is used for CI/CD pipeline.
+* Using Route53 with weighted policies create record with same name and type associate with multiple resources. Allocate weight to  record accordingly.
+  Assign each record a relevant weight that corresponds how much traffic to be routed. Specify weights 1(less priority) to 255.
+  Formula for how much traffic to be routed is weight of specific record/sum of weights of all records
+* In cloudformation template handler is the name of the method within a code that lambda calls to execute a function.
+* AWS S3 supports s3:x-amz-server-side-encryption-aws-kms-key-id which you can specify specific KMS key.The KMS key which you specify is the format of
+  arn:aws:kms:region:acct-id:key/key-id
+* ELB provides access logs where It captures detailed information about the request of load balancer. Each log contains information about ip address,
+  request paths..Cloudtrail is used to capture all API calls for ELB as events. For monitoring cloudtrail doesn't suits access logs on loadbalancer fits.
+* Reduced page size and large number of smaller operations reduces throttling.
+* A stage variables can be passed as part of HTTP integration URL in the following ways.
+  1. A full URI without protocol
+  2. A full domain
+  3. A subdomain
+  4. A path
+  5. A query string
+  
+* AWS OpsWork is a configuration management service that provides managed instance of Puppet and Chef. These are automation patforms which allow to code the configuration of servers 
+  to be deployed and managed in EC2 instance.
+* You can install cloud watch agent on the machine and then configure to send the logs for web server to central location in cloudwatch.
+* AWS cognito streams gives developers control and insight into their data stored in Cognito. they can use Kinesis streams for analysis.
+* When AWS lambda function wants to access the resources in VPO then vpc subnet Id's and Security group Id's needs to be provided. So that it can access the resources of VPC.
+* AWS ElasticBeanStalk supports custom platform which is created using packers where it lets you develop a new platform reducing the burden from EBS.
+* EBS supports two methods of saving configuration settings in YAML or JSON and can be included in the application source code in a directory named .ebextension and deployed.
+>>>>>>> 9ea558e49a0cbf944571878d8289f61228d70c69
 * 
