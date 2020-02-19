@@ -1239,5 +1239,15 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * When AWS lambda function wants to access the resources in VPO then vpc subnet Id's and Security group Id's needs to be provided. So that it can access the resources of VPC.
 * AWS ElasticBeanStalk supports custom platform which is created using packers where it lets you develop a new platform reducing the burden from EBS.
 * EBS supports two methods of saving configuration settings in YAML or JSON and can be included in the application source code in a directory named .ebextension and deployed.
->>>>>>> 9ea558e49a0cbf944571878d8289f61228d70c69
+* We can use existing or create a new cognito stream to push the data to Kinesis stream and then REDshift can analyze the data. The releavant IAM role with permisssion
+  needs to be granted.
+* Each time an application is deployed to EBS it creates application version. If you dont delete the version then then you no longer use and you'll reach the application
+  version limit and unable to create new version. You can avoid this by applying application version lifecycle policy to your application which tells EBS to delete the
+  older version and install newer version.
+* AWS dynamodb global tables provides fully managed solution for deploying multi region and multi master database without the need for replication.
+* Kinesis firehouse is used to stream the data to destination. whereas kinesis streams used to get the stream of data and store.
+* Kinesis firehouse can invoke lambda function for the transformation.
+* S3 bucket with server  logs enabled can accumulate many server log objects. S3 lifecycle configuration to set rules so that S3 can automatically delete after period of time.
+* To create nested stack use AWS-cloudformation-stack needs to be used.
 * 
+  
