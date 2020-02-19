@@ -1249,5 +1249,36 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * Kinesis firehouse can invoke lambda function for the transformation.
 * S3 bucket with server  logs enabled can accumulate many server log objects. S3 lifecycle configuration to set rules so that S3 can automatically delete after period of time.
 * To create nested stack use AWS-cloudformation-stack needs to be used.
+* Use SAM package command to zip the application and upload to S3 and then create a output template file. The SAM deploy command is used to deploy the application
+  picking the output file to instances.
+* Environment variables are dynamic way of passing variable values to Lambda function.
+* In Apigateway the deployment represents a deployment resource. For the client to call the Api then you must create a deployment and associate to a stage. The stage\
+  contains the integration models, mapping templates..
+* In order to call STS we need to pass the ARN of the role that the app should assume, The duration of validity, Role session name which is a string value to
+  identify the session where can also useful for cloudtrail during audit.
+* When your API's resource receives request from other than the application domain then CORS should be enabled which means the following headers should be sent in the request.
+  1. access-control-allow-methods
+  2. access-control-allow-headers
+  3. access-control-allow-origin
+* Redis for high availability.
+* Security groups and network ACL's allow you to control inbound and outbound network to access your instances.
+* Use command sts decode-authorization-message which decodes additional information about request returned from the encoded message request.
+* Policy simulator command is been used to evaluate the policies and return list of context keys first. then in the next step provide the context keys to be used
+  in next step aws iam simulate-custom-policy command.
+* X-Ray daemons can be installed in Windows, linux and Ubuntu.
+* Cloudtrail logs all autenticated or unautenciated request to STS api, Assumerolewithsaml, assumerolewithwebidentity.
+* Aws codestar accelerates the software release with the help of codepipeline.
+* When using CLI the credentials are evaluated in the following manner
+  1. Environment variables.
+  2. Java system properties
+  3. Default credentials profile.
+  4. ECS container credentials
+* When uploading an application to EBS you need to specify the following
+  1. Not exceeding 512MB
+  2. ZIP or WAR file.
+  3. Not include parent folder
+* By default alias points to single version of lambda function. When the version is update it points to newer function version. Using -routing-config parameter
+  we can use to point multiple versions.
+* The dafault visibility timeout for SQS message is 30 seconds and If application needs more time then change the visibility timeout and delete the message after processing.
 * 
   
