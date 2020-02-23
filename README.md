@@ -1280,5 +1280,67 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * By default alias points to single version of lambda function. When the version is update it points to newer function version. Using -routing-config parameter
   we can use to point multiple versions.
 * The dafault visibility timeout for SQS message is 30 seconds and If application needs more time then change the visibility timeout and delete the message after processing.
-* 
+* EBS supports two types of config files in YAML or JSON.
+* Visibility timeout is the one where SQS prevents application from accessing the messages to be processed.
+* AWS Redshift is a internet hosting service and datawarehouse product with massive parallel processing to handle large scale migrations.
+* During AWS code deploy automatic rollback if it fails then manually add the files and create a new version.
+* Long polling will wait for a message or timeout values for each queue which may delay the processing of messages in other queues. 
+* S3 for website hosting configurations 
+    1. Enable website hosting
+    2. Configure index document
+    3. Permission required for website access
+* Server side encryption with kinesis firehouse is enabled only if when kinesis streams are used as your data source.
+* When you launch CF stack you can configure software applications on EC2 with cfn-init helper and AWS:CloudFormation:init resource. With AWS:CloudFormation:init you can
+  describe the configurations rather than scripting.
+* Global secondary index doesn't support consistent read. It only supports eventual read. To get the latest results Queries are best option.
+* By default the timeout for the lambda function is 3 seconds with 128MB memory allocated.
+* In order to migrate the code from svn or other repo first migrate to git and then from git to AWS code commit.
+* While enabling CORS on resource using API gateway for all response except 200 then the OPTIONS method has to manually configure ACCESS-CONTROL-ALLOW-ORIGIN ""
+* For strong consistent read from an application. DAX cluster pass all the request to DynamoDB and does not cache the request.
+* Cross region replication for S3 bucket gives 
+    1. Compliance requirements.
+    2. Minimize latency
+    3. Increase operational efficiency.
+    4. Maintain object copies under different ownership.
+* For lambda function connection string needs to be encrypted then 
+    1. Put the connection string in environment variable
+    2. Encrypt the environment variable
+* Application load balancers support dynamic host port mapping and also path based routing.
+* Network load balancers also supports dynamic host port mapping.
+* Write around cache is used when there is a considerable amount of data to be written to database. In this case data is directly written to Dynamodb instead of DAX.
+  whereas with write through cache data is directly written to Item cache. You dont need to maintain cache invalidation logic. DAX will handle that.
+* For dynamo db encryption is mandatory at the time of table creation and that can be done in two ways
+  1. Enable encryption using AWS owned CMK.
+  2. Enable encryption using AWS managed CMK.
+* MULTIPART api allows us to upload large object in parts. You can use this api to upload new large objects or copy of exixting object in S3.
+* Elastic bean stalk with custome AMI allows to provision custome requirements and its helpful in reducing the time than configuration files.
+* GenerateDataKey returns both plaintext and encrypted copy whereas the GenerateDataKeywithoutplaintext will only return encrypted copy which is encrypted by CMK.
+* A lambda function alias is a pointer pointing to specific lambda function version.
+* Do not embed security credentials in THE cf TEMPLATE rather include them in the parameters to pass those information when you create or update a stack.
+* Delay queues postpone the delivery of new message to the queue for number of seconds. By default its 0 and maz 15 minutes.
+  Any message you send to the queue remain invisible to consumer for the duration of the delay period.
+* To set delay on individual message rather than on the queue use message timers. visibility timeout makes the message unavailable to consumers after message is added to
+  queue.
+* Cloudformation templates supports String, Number and List.
+* In order to delete an S3 bucket first delete all objects in the bucket.
+* With EFS you can use network file system which can mount by instances across availability zones. In EBS EFS creates a shared directory.
+* Launch configuration and Environment manifest fil are two options to change the instance types in EBS.
+* By default the query operation does not return any data on how much read capacity it consumes. In order to know that ensure to set ReadConsumedCapacity to TOTAL 
+  NONE, INDEXEs(Aggregate.
+* To determine which S3 object has millions of versions use AWS S3 inventory.
+* By default AWS states language doesn't have any timeout, Step function often relies on response time of worker.
+* AWS SNS supports sending of metadata along with message attributes such as timestamp, geospatial data..with most 10 attributes.
+* AWS CF stacksets extends the functionality of stacks by enabling you to create, update or delete across multiple accounts and regions within a single operation.
+* Autentication mechanism in ApiGateway are many few of them are Lambda authorizers, cognito, Resource policies..
+* In EBS for RDS data backup ensure create snapshot is enabled during environment creation.
+* Assumerolewithwebidentity for extenal providers. Assumerolewithsaml for via SAML.
+* AWS KINESIS DATA ANALYTICS IS USED TO ANALYZE the streaming data using SQL whereas firehouse analyzes the realtime streaming data to destinations such as S3.
+* IF A CUSTOM METRIC NEEDS TO BE monitored then create high resolution metric to be used. Basic or detailed monitoring are for existing AWSSERVICES.
+* AWS DATABASE migration service is used for db migration wheras for data AWS data pipeline is used.
+* The default sampling rule for X-Ray is one request per second and 5% of additional request per host.
+* Number of sample request per second is Resorvior rate + (Total req - Resorvior rate) * Fixed rate %
+
+
+
+     
   
