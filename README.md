@@ -1344,7 +1344,13 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   1. Error log: Diagnostic messages with startup and startdown.
   2. General Query log: Records all SQL statements
   3. Slow query log: Contains record of SQL statements that took longer time.
-* 
+* Use Lambda retry function with error equals if service exception after that still not resolved then use lambda catch code.
+* Accessing teh resources in the private subnet then use vpc specific configuration information. Internet gateway is the logical connnection b/n vpc and internet.
+  whereas NAT forwards teh traffic to the internet.
+* X ray SDK provides Interceptors to add to your code to trace incoming http request. Client handlers to instrument AWS SDK clients that your appl uses and Http client
+  for web service calls.
+* AWS quicksight for visualization and analysis with screens.
+* Calculate number of shards: max(incoming write bandwidth, outgoing read bandwidth)
 
 
 
