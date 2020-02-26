@@ -1339,6 +1339,12 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * AWS DATABASE migration service is used for db migration wheras for data AWS data pipeline is used.
 * The default sampling rule for X-Ray is one request per second and 5% of additional request per host.
 * Number of sample request per second is Resorvior rate + (Total req - Resorvior rate) * Fixed rate %
+* describe-db-instance from AWS CLI or DescribeDBInstance from RDS API is the way to connect to RDS.
+* The AWS RDS has several logs few of them are
+  1. Error log: Diagnostic messages with startup and startdown.
+  2. General Query log: Records all SQL statements
+  3. Slow query log: Contains record of SQL statements that took longer time.
+* 
 
 
 
