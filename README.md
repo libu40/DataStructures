@@ -1351,7 +1351,34 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   for web service calls.
 * AWS quicksight for visualization and analysis with screens.
 * Calculate number of shards: max(incoming write bandwidth, outgoing read bandwidth)
-
+* Use SSL to encrypt data in transit where as KMS for encrypting data at rest.
+* Large attribute values can be stored in S3 and identifiers in DynamoDB.
+* Configure your origin to add a cache-control or expires header field to each object and specify minimum TTL in cloudfront cache behaviour by default 24hrs.
+* Access keys are used for autenticating API request via POSTMAN.
+* AWS Route53 HealthCheck used to divert If any of the resource not functioning whereas load balancers are used to distribute traffic.
+* AWS cognito sync is a service and client library that enables cross device syncing of user profile in mobile and web applications. If push sync enabled then sends notification
+  to other devices.
+* AWS inspector is used to check vulnerabilities in the server.
+* APIGATEWAY lets you use mapping template to map the payload from the method request to the corresponding integration request and from the corresponding
+  integration response to method response.
+* The default message visibility is 30 seconds with minimum 0 and maximum 12 hours.
+* Use GenerateDataKey to get the data encryption key and use plaintext key to encrypt the data and delete the plain text key. Store the encrypted data key.
+* Elastic cache with REDIS is multi AZ which is highly available and automatic detection and recovery from cache node failures.
+* AWS lambda function uses X_AMZN_TRACE_ID, AWS_XRAY_CONTEXT_MISSING, AWS_XRAY_DAEMON_ADDRESS communication bn Xray and Lambda service.
+* Pass the exact incoming request from client to lambda function then use "type":"aws_proxy".
+* Projection expression with Query should be used along with primary/sort key to filter the data in other cases use Scan.
+* Enable TTL and use any name of your choice as a key attribute to store the expiry timestamp.
+* Exponential backoff and AWS sdk(retries).
+* Scan does not support Partition or Sort key whereas Query does not support multiple partition keys.BatchGetItem is the best.
+* Each lambda function has a concurrency limit of 1000 by default.
+* Auto publish alias will create a new alias, create and publish new version of lambda code.
+* Data stream consumer makes connection to each shard by default so that It reduces the latency.
+* For changing the themes of mobiles the context object with AWS mobile SDK give lambda function automatic access to device
+  and application information.
+* Data stream consumer makes connection to each shard by default so that It reduces the latency.
+* For changing the themes of mobiles the context object with AWS mobile SDK give lambda function automatic access to device
+  and application information.
+* 
 
 
      
