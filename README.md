@@ -1378,6 +1378,11 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * Data stream consumer makes connection to each shard by default so that It reduces the latency.
 * For changing the themes of mobiles the context object with AWS mobile SDK give lambda function automatic access to device
   and application information.
+* Appspec file for lambda in order ton maintain additional properties then
+    1. Name
+    2. Alias
+    3. CurrentVersion
+    4. TargetVersion
 * 
 
 
