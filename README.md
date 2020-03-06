@@ -1378,6 +1378,7 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * Data stream consumer makes connection to each shard by default so that It reduces the latency.
 * For changing the themes of mobiles the context object with AWS mobile SDK give lambda function automatic access to device
   and application information.
+* The maximum amount of memory that can be allocated to lambda function cpu resources is 3GB.
 * 
 
 
