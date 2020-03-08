@@ -1383,7 +1383,20 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
     2. Alias
     3. CurrentVersion
     4. TargetVersion
+* SQS gurantees delivery but there will be duplicates.
+* DynamoDB atomic counter.
+* In DynamoDB per region 256 tables can be created.
+* BatchGetItem returns the attributes of one or more items of one or more tables by partition key.
+* 25 secondary indexes per dynamodb table.
+* 20 global secondary indexes allowed per table.
+* Max 10GB limit items collection in a table.
+* Each item maximum 400KB.
+* In SQS messages cannot be recalled.
+* Each object in S3 max size is 100MB.
+* SWF workflow task can live upto 1 year.
+* SQS will deliver messages one or more times and the message delivery order is indeterminate.
 * 
+
 
 
      
