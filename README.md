@@ -1395,6 +1395,7 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * Each object in S3 max size is 100MB.
 * SWF workflow task can live upto 1 year.
 * SQS will deliver messages one or more times and the message delivery order is indeterminate.
+* When you launch EC2 instance you have the option to pass user data which includes scripts and cloud-init directives. This can be used to run on instances.
 * 
 
 
