@@ -1396,7 +1396,63 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * SWF workflow task can live upto 1 year.
 * SQS will deliver messages one or more times and the message delivery order is indeterminate.
 * When you launch EC2 instance you have the option to pass user data which includes scripts and cloud-init directives. This can be used to run on instances.
+* AWS concierfe support team for enterprise plan subscription assist customers with their billing and account queries.
+* AWS infrastructure and guidance team allows to give guidance to technical team about architetural and scaling decisions.
+* AWS personal health dashboard gives personalized view of AWS service health and events that may impact aws resources.
+* AWS ELB does the heath checks too and distributes the traffic to healthy instances only.
+* AWS cost and usage report used for accessing the most detailed information of cost.
+* TCO Total cost of ownership calculator allows customer to evaluate the savings from AWS and compare an AWS cloud environment to on premised.
+* AWS system manager unified user interface to view operational data from multiple AWS services and allows to automate operational tasks.
+* AWS artifact provides customers of AWS aggrements to review track and accept.
+* With consolidated billing there is a benfit of volume discount.
+* AWS customers are welcome to carry out security assessments and penetration tests against their AWS infrastructure without prior approval for 8 services:
+  
+  1- Amazon EC2 instances, NAT Gateways, and Elastic Load Balancers.
+  
+  2- Amazon RDS.
+  
+  3- Amazon CloudFront.
+  
+  4- Amazon Aurora.
+  
+  5- Amazon API Gateways.
+  
+  6- AWS Lambda and Lambda Edge functions.
+  
+  7- Amazon Lightsail resources.
+  
+  8- Amazon Elastic Beanstalk environments.
+
+* S3 intelligent tiering is used for optimizing the cost amd move the data to and from frequent and unfrequent tiers.
+* AWS Trusted Advisor is an online tool that provides you real time guidance to help you provision your resources following AWS best practices. 
+  AWS Trusted Advisor offers a rich set of best practice checks and recommendations across five categories: 
+  cost optimization; security; fault tolerance; performance; and service limits.    AWS Trusted Advisor improves the security of your application by closing gaps, 
+  enabling various AWS security features, and examining your permissions.
+  
+  The core security checks include: (Important)
+  
+  1- Security Groups - Specific Ports Unrestricted.
+  
+  Checks security groups for rules that allow unrestricted access to specific ports. Unrestricted access increases opportunities for malicious activity (hacking, denial-of-service attacks, loss of data).
+  
+  2- Amazon S3 Bucket Permissions.
+  
+  Checks buckets in Amazon Simple Storage Service (Amazon S3) that have open access permissions. Bucket permissions that grant List access to everyone can result in higher than expected charges if objects in the bucket are listed by unintended users at a high frequency. Bucket permissions that grant Upload/Delete access to everyone create potential security vulnerabilities by allowing anyone to add, modify, or remove items in a bucket. This check examines explicit bucket permissions and associated bucket policies that might override the bucket permissions.
+  
+  3- MFA on Root Account.
+  
+  Checks the root account and warns if multi-factor authentication (MFA) is not enabled. For increased security, AWS recommends that you protect your account by using MFA, which requires a user to enter a unique authentication code from their MFA hardware or virtual device when interacting with the AWS console and
+  
+  
+* Under the shared responsibility model, AWS is responsible for the hardware and software that run AWS services. This includes patching the infrastructure software and configuring infrastructure devices. As a customer, you are responsible for implementing best practices for data encryption, patching guest operating system and applications, 
+  identity and access management, and network & firewall configurations.
+
+* AWS Storage Gateway is a hybrid cloud storage service that gives you on-premises access to virtually unlimited cloud storage. Customers use Storage Gateway to simplify storage management and reduce costs for key hybrid cloud storage use cases. 
+  These include moving tape backups to the cloud, reducing on-premises storage with cloud-backed file shares, providing low latency access to data in AWS for on-premises applications, as well as various migration, archiving, processing, and disaster recovery use cases.  
+  the service provides three different types of gateways – Tape Gateway, File Gateway, and Volume Gateway – that seamlessly connect on-premises applications to cloud storage, caching data locally for low-latency access. 
 * 
+
+
 
 
 
