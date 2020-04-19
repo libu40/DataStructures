@@ -1459,4 +1459,39 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
   Patch Management – AWS is responsible for patching the underlying hosts and fixing flaws within the infrastructure, but customers are responsible for patching their guest OS and applications.
   Configuration Management – AWS maintains the configuration of its infrastructure devices, but a customer is responsible for configuring their own guest operating systems, databases, and applications.
   Awareness & Training - AWS trains AWS employees, but a customer must train their own employees.
+* The 5 Pillars of the AWS Well-Architected Framework:
+
+  1- Operational Excellence: The operational excellence pillar includes the ability to run and monitor systems to deliver business value and to continually improve supporting processes and procedures.
+
+  2- Security: The security pillar includes the ability to protect information, systems, and assets while delivering business value through risk assessments and mitigation strategies.
+
+  3- Reliability: The reliability pillar includes the ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources to meet demand, and mitigate disruptions such as  misconfigurations or transient network issues.
+
+  4- Performance Efficiency: The performance efficiency pillar includes the ability to use computing resources efficiently to meet system requirements and to maintain that efficiency as demand changes and technologies evolve.
+
+  5- Cost Optimization: The cost optimization pillar includes the ability to avoid or eliminate unneeded cost or sub-optimal resources.
+
+* Dedicated Host supports BYOL.
+* APN Consulting Partners are professional services firms that help customers design, architect, build, migrate, and manage their workloads and applications on AWS.
+* Amazon Inspector allows you to create assessment templates to automate security vulnerability assessments throughout your development and deployment pipelines or for static production systems.
+* AWS Organizations is an account management service that enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage.
+* You can choose between three payment options when you purchase a Standard or Convertible Reserved Instance:
+
+  1- No Upfront:
+
+            No upfront payment is required. You are billed a discounted hourly rate  for every hour within the term, regardless of whether the Reserved Instance is being used. No Upfront Reserved Instances are based on a contractual obligation to pay monthly for the entire term of the reservation. A successful billing history is required before you can purchase No Upfront Reserved Instances.
+
+  2- Partial Upfront:
+
+             A portion of the cost must be paid up front and the remaining hours in the term are billed at a discounted hourly rate, regardless of whether you’re using the Reserved Instance.
+
+  3- All Upfront:
+
+             With the All Upfront option, you pay for the entire Reserved Instance term with one upfront payment. This option provides you with the largest discount compared to On-Demand instance pricing.
+
+* Amazon S3 Transfer Acceleration enables fast, easy, and secure transfers of files over long distances between your client and an S3 bucket. Transfer Acceleration takes advantage of Amazon CloudFront’s globally distributed edge locations. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path.
+* AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to easily generate and use your own encryption keys on the AWS Cloud. With CloudHSM, you can manage your own encryption keys.
+* The factors that have the greatest impact on cost include: Compute, Storage  and Data Transfer Out. Their pricing differs according to the service you use.
+* There are no reservations in S3. You pay for what you use.
+* On-Demand Instances have no contract commitment and can be launched (or terminated) as needed. You are charged by the second based on an hourly rate and you pay only for what you use. This makes them ideal for applications with short-term or irregular workloads.
 *
