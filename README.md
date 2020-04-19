@@ -1494,4 +1494,26 @@ or no changes are made at all. With a BatchWriteItem operation, it is possible t
 * The factors that have the greatest impact on cost include: Compute, Storage  and Data Transfer Out. Their pricing differs according to the service you use.
 * There are no reservations in S3. You pay for what you use.
 * On-Demand Instances have no contract commitment and can be launched (or terminated) as needed. You are charged by the second based on an hourly rate and you pay only for what you use. This makes them ideal for applications with short-term or irregular workloads.
-*
+* Amazon Elastic Transcoder is media transcoding in the cloud. It is designed to be a highly scalable, easy-to-use, and cost-effective way for developers and businesses to convert (or transcode) media files from their source format into versions that will play back on devices like smartphones, tablets, and PCs.
+*  AWS Organizations has five main benefits:
+
+  1) Centrally manage access polices across multiple AWS accounts.
+
+  2) Automate AWS account creation and management.
+
+  3) Control access to AWS services.
+
+  4) Consolidate billing across multiple AWS accounts.
+
+  5) Configure AWS services across multiple accounts.
+
+* Amazon Lightsail is designed to be the easiest way to launch and manage a virtual private server with AWS. Lightsail plans include everything you need to jumpstart your project –a virtual machine,
+  SSD-based storage, data transfer, DNS management, and a static IPaddress–for a low, predictable price.
+*  Amazon Web Services (AWS) allows customers to assign metadata to their AWS resources in the form of tags. Each tag is a simple label consisting of a customer-defined key and an optional value that can make it easier to manage, search for, and filter resources. Although there are no inherent types of tags, they enable customers to categorize resources by purpose, owner, environment, or other criteria.
+* AWS provides three pricing models:
+
+  1- Pay-as-you-go
+
+  2- Save when you reserve
+
+  3- Pay less by using more
