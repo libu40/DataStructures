@@ -1,7 +1,7 @@
-package com.io.test;
+package com.io.leetcode;
 
-import com.io.test.model.Employee;
-import com.io.test.util.MyBiFunction;
+import com.io.leetcode.model.Employee;
+import com.io.leetcode.util.MyBiFunction;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -13,8 +13,8 @@ public class Hashmap {
 
     Map<Integer, Employee> employeeMap = new java.util.HashMap<>();
     Map<String, Integer> countMap = new HashMap<>();
-    Employee employee1 = new Employee("Libu", 1, "1");
-    Employee employee2 = new Employee("Mathew", 2, "2");
+    Employee employee1 = new Employee("Libu", 1, "1", 1);
+    Employee employee2 = new Employee("Mathew", 2, "2", 1);
     employeeMap.put(1, employee1);
     employeeMap.put(2, employee2);
     countMap.put("OHRA", 1);

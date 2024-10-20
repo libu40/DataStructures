@@ -4,21 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <artifactId>Assessment</artifactId>
 
-  <dependencies>
-    <dependency>
-      <artifactId>lombok</artifactId>
-      <groupId>org.projectlombok</groupId>
-      <scope>provided</scope>
-      <version>1.18.8</version>
-    </dependency>
-
-  </dependencies>
-  <groupId>com.io.assessment</groupId>
+  <groupId>com.io.leetcode</groupId>
   <modelVersion>4.0.0</modelVersion>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <version>1.0-SNAPSHOT</version>

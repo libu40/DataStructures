@@ -1,4 +1,4 @@
-package com.io.test;
+package com.io.leetcode;
 
 import java.util.Stack;
 

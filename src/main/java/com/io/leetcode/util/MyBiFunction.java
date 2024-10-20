@@ -1,4 +1,4 @@
-package com.io.test.util;
+package com.io.leetcode.util;
 
 import java.util.function.BiFunction;
 
